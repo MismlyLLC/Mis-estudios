@@ -1,4 +1,4 @@
-# 📚 Mis Estudios — Swift para Entrevista iOS (NTT Data)
+# 📚 Mis Estudios — Swift para Entrevista iOS
 
 Repositorio de aprendizaje de Swift desde cero, preparando para entrevista técnica iOS.
 
