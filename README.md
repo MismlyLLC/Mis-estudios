@@ -2,6 +2,17 @@
 
 ---
 
+## Cómo retomar el estudio en una nueva sesión
+
+Al abrir un chat nuevo con Claude, pega este prompt:
+
+> "Continuemos con el estudio de Swift. Completé las lecciones 1-7 (Variables, Condicionales, Loops, Funciones, Arrays, Optionals, Structs y Classes). Mi archivo de trabajo es AI Learning/AI Learning/Playground.swift. El repositorio está en github.com/MismlyLLC/Mis-estudios. La siguiente lección es Protocolos. Actualiza la lección pendiente según el README del repositorio."
+
+**Al terminar cada sesión pedir:**
+> "Genera el HTML del día para imprimir, actualiza el README con el nuevo progreso y guarda la memoria para la próxima sesión."
+
+---
+
 ## Progreso
 
 | Lección | Tema | Estado |
