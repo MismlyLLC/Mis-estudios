@@ -224,14 +224,33 @@ struct Circulo: Calculable {
 
 
 
-// EJERCICIO 2:
-//   Define un protocolo "Calculable" con un método:
-//     func area() -> Double
-//   Crea dos structs: "Cuadrado" (lado: Double) y "Circulo" (radio: Double)
-//   que adopten el protocolo y calculen su área.
-//   (Área cuadrado = lado * lado, Área círculo = 3.1416 * radio * radio)
+// =========================================
+// NOTAS DE REPASO — ERRORES COMUNES
+// =========================================
 //
-// Escribe tu código debajo:
+// ESQUELETO 1 — Optional
+//   ❌ var x Tipo? = nil        → falta el :
+//   ✅ var x: Tipo? = nil       → el : va entre nombre y tipo
+//
+// ESQUELETO 2 — Class
+//   ❌ var propiedad: Tipo {    → no lleva { aquí
+//        init(...) { }          → el init no va dentro de la propiedad
+//      }
+//   ✅ var propiedad: Tipo      → sin llaves
+//      init(propiedad: Tipo) {  → el init va al mismo nivel
+//          self.propiedad = propiedad
+//      }
+//
+// ESQUELETO 3 — Protocolo
+//   ❌ protocol Adoptante: Tipo { }   → nombre mal, : Tipo no va aquí
+//   ✅ protocol Nombre { }            → solo el nombre, sin :
+//
+//   ❌ struct Adoptante { }           → falta adoptar el protocolo
+//   ✅ struct Adoptante: Nombre { }   → : Nombre indica que lo adopta
+//
+// REGLA IMPORTANTE:
+//   Structs, classes y protocolos van FUERA de runPlayground()
+//   Dentro de la función solo van las instancias y los print()
 
 
 
