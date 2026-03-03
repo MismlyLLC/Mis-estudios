@@ -225,32 +225,54 @@ struct Circulo: Calculable {
 
 
 // =========================================
-// NOTAS DE REPASO — ERRORES COMUNES
+// NOTAS DE REPASO — ERRORES COMETIDOS HOY
 // =========================================
 //
 // ESQUELETO 1 — Optional
-//   ❌ var x Tipo? = nil        → falta el :
-//   ✅ var x: Tipo? = nil       → el : va entre nombre y tipo
+//   ❌ var x Tipo? = nil        → falta el : entre nombre y tipo
+//   ✅ var x: Tipo? = nil       → siempre: nombre : Tipo? = valor
+//
+//   ❌ if let x = 100           → 100 es un valor, no la variable optional
+//   ✅ if let x = x             → se pasa la variable optional, no su valor
+//
+// ESQUELETO 2 — Struct
+//   ❌ var propiedad: Nombre    → Nombre es el struct, no el tipo
+//   ✅ var propiedad: Tipo      → Tipo es el tipo de dato (String, Int, etc.)
 //
 // ESQUELETO 2 — Class
-//   ❌ var propiedad: Tipo {    → no lleva { aquí
-//        init(...) { }          → el init no va dentro de la propiedad
+//   ❌ var propiedad: Tipo {    → la { abre un bloque de propiedad computada
+//        init(...) { }          → el init NO puede ir dentro de la propiedad
 //      }
-//   ✅ var propiedad: Tipo      → sin llaves
-//      init(propiedad: Tipo) {  → el init va al mismo nivel
+//   ✅ var propiedad: Tipo      → sin llaves, solo declaración
+//      init(propiedad: Tipo) {  → el init va al mismo nivel que la propiedad
 //          self.propiedad = propiedad
 //      }
 //
-// ESQUELETO 3 — Protocolo
-//   ❌ protocol Adoptante: Tipo { }   → nombre mal, : Tipo no va aquí
-//   ✅ protocol Nombre { }            → solo el nombre, sin :
+//   ❌ init(propiedad: tipo)    → tipo con minúscula
+//   ✅ init(propiedad: Tipo)    → los tipos siempre con mayúscula
 //
-//   ❌ struct Adoptante { }           → falta adoptar el protocolo
-//   ✅ struct Adoptante: Nombre { }   → : Nombre indica que lo adopta
+//   ❌ (init propiedad: Tipo)   → paréntesis en el lugar equivocado
+//   ✅ init(propiedad: Tipo)    → init primero, paréntesis después
+//
+// ESQUELETO 3 — Protocolo
+//   ❌ func option -> Value()   → paréntesis en el tipo de retorno
+//   ✅ func metodo() -> Tipo    → paréntesis van después del nombre
+//
+//   ❌ protocol Adoptante: Tipo → nombre equivocado y : Tipo no va aquí
+//   ✅ protocol Nombre          → solo la palabra protocol y el nombre
+//
+//   ❌ struct Adoptante         → falta indicar qué protocolo adopta
+//   ✅ struct Adoptante: Nombre → : Nombre indica que lo adopta
+//
+//   ❌ return Valor             → Valor con mayúscula parece un tipo
+//   ✅ return valor             → los valores van con minúscula
 //
 // REGLA IMPORTANTE:
 //   Structs, classes y protocolos van FUERA de runPlayground()
-//   Dentro de la función solo van las instancias y los print()
+//   Dentro de la función solo van instancias y print()
+//
+//   ❌ func runPlayGround()     → G mayúscula (es error de tipeo)
+//   ✅ func runPlayground()     → g minúscula
 
 
 
