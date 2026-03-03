@@ -6,10 +6,10 @@
 
 Al abrir un chat nuevo con Claude, pega este prompt:
 
-> "Continuemos con el estudio de Swift. Completé las lecciones 1-8 (Variables, Condicionales, Loops, Funciones, Arrays, Optionals, Structs, Classes y Protocolos). Mi archivo de trabajo es AI Learning/AI Learning/Playground.swift. El repositorio está en github.com/MismlyLLC/Mis-estudios. La siguiente lección es LeetCode Easy en Swift. Actualiza la lección pendiente según el README del repositorio."
+> "Continuemos con el estudio de Swift. Completé las lecciones 1-8 y el repaso de esqueletos. Mi archivo de trabajo es AI Learning/AI Learning/Playground.swift. El repositorio está en github.com/MismlyLLC/Mis-estudios. La siguiente lección es LeetCode Easy en Swift. Actualiza la lección pendiente según el README del repositorio."
 
 **Al terminar cada sesión pedir:**
-> "Genera el HTML del día para imprimir, actualiza el README con el nuevo progreso y guarda la memoria para la próxima sesión."
+> "Pasa todo lo que vimos hoy al README para imprimir, actualiza el progreso y guarda la memoria para la próxima sesión."
 
 ---
 
@@ -25,6 +25,7 @@ Al abrir un chat nuevo con Claude, pega este prompt:
 | 6 | Optionals | Completada |
 | 7 | Structs y Classes | Completada |
 | 8 | Protocolos | Completada |
+| — | Repaso de Esqueletos 6-8 | Completado |
 | 9 | LeetCode Easy en Swift | Pendiente |
 
 ---
@@ -82,7 +83,7 @@ for i in 1...10 {
 
 for numero in 1...20 {
     if numero % 2 == 0 {
-        print(numero)  // solo pares
+        print(numero)
     }
 }
 ```
@@ -95,7 +96,6 @@ for numero in 1...20 {
 - Los parámetros llevan nombre y tipo
 - El tipo de retorno va después de `->`
 - Si no retorna nada, no se escribe `->`
-- Al llamar la función se escribe la etiqueta del parámetro
 
 ```swift
 func esPar(numero: Int) -> Bool {
@@ -109,10 +109,6 @@ func esPar(numero: Int) -> Bool {
 func saludar(nombre: String, edad: Int) {
     print("Hola \(nombre), tienes \(edad) años")
 }
-
-// Llamadas:
-print(esPar(numero: 7))       // false
-saludar(nombre: "Nicolas", edad: 25)
 ```
 
 ---
@@ -123,83 +119,66 @@ saludar(nombre: "Nicolas", edad: 25)
 
 ```swift
 let notas: [Int] = [6, 4, 7, 5, 6]
-print(notas[0])      // 6 — primer elemento
-print(notas[4])      // 6 — último elemento
-print(notas.count)   // 5 — cantidad de elementos
+print(notas[0])      // 6
+print(notas.count)   // 5
 ```
 
-**Diccionario** — pares clave: valor, acceso por nombre
+**Diccionario** — pares clave: valor
 
 ```swift
 let contacto: [String: String] = [
     "nombre": "Nicolas",
     "ciudad": "Antofagasta"
 ]
-print(contacto["nombre"] ?? "sin valor")  // "Nicolas"
+print(contacto["nombre"] ?? "sin valor")
 ```
-
-**Diferencia clave:**
-- Array: cuando el orden importa (lista de tareas, notas, etc.)
-- Diccionario: cuando necesitas describir algo con etiquetas (perfil de usuario, configuración, etc.)
 
 ---
 
 ### Lección 6 — Optionals
 
-Un Optional es una variable que puede tener un valor o puede ser `nil` (vacío).
-Se declara con `?` después del tipo.
+Un Optional puede tener un valor o ser `nil`. Se declara con `?` después del tipo.
 
 ```swift
-var apellido: String? = nil   // puede ser nil
-var edad: Int? = 25           // tiene valor, pero podría ser nil
+var apellido: String? = nil
+var edad: Int? = 25
 ```
 
-**Tres formas de manejar optionals:**
-
-1. `if let` — optional binding, la forma más segura
+**Formas de manejarlos:**
 
 ```swift
+// if let — más seguro
 if let a = apellido {
-    print(a)           // aquí a es String limpio
+    print(a)
 } else {
     print("Sin apellido")
 }
-```
 
-2. `??` — nil coalescing, valor por defecto si es nil
-
-```swift
+// ?? — valor por defecto
 print(apellido ?? "Sin apellido")
-print(edad ?? 0)
-```
 
-3. `!` — force unwrap, peligroso, evitar
-
-```swift
-print(apellido!)  // crash si apellido es nil
+// ! — peligroso, evitar
+print(apellido!)  // crash si es nil
 ```
 
 ---
 
 ### Lección 7 — Structs y Classes
 
-**Struct — tipo por valor (Value Type)**
-- Swift genera el `init` automáticamente
-- Al copiar un struct se crea una copia independiente
+**Struct — tipo por valor**
+Swift genera el `init` automáticamente.
 
 ```swift
 struct Persona {
     var nombre: String
     var edad: Int
-    var ciudad: String
 }
 
-var p1 = Persona(nombre: "Nicolas", edad: 25, ciudad: "Antofagasta")
+var p1 = Persona(nombre: "Nicolas", edad: 25)
 ```
 
-**Class — tipo por referencia (Reference Type)**
-- Debes escribir el `init` manualmente
-- Al copiar una class, ambas variables apuntan al mismo objeto
+**Class — tipo por referencia**
+Debes escribir el `init` manualmente.
 
 ```swift
 class Vehiculo {
@@ -217,12 +196,7 @@ class Vehiculo {
 
 ### Lección 8 — Protocolos
 
-Un protocolo es un "contrato" que define qué métodos o propiedades debe tener un tipo, sin implementarlos.
-
-- Se define con `protocol`
-- Un struct o class adopta el protocolo escribiendo su nombre después de `:`
-- Si adoptas un protocolo, **debes** implementar todo lo que exige
-- Un tipo puede adoptar múltiples protocolos separados por coma
+Un protocolo es un contrato que define qué métodos o propiedades debe tener un tipo.
 
 ```swift
 protocol Saludable {
@@ -238,11 +212,6 @@ struct Estudiante: Saludable {
     }
 }
 
-let e = Estudiante(nombre: "Nicolas", carrera: "Administración")
-print(e.saludar())  // "Hola, soy Nicolas y estudio Administración"
-```
-
-```swift
 protocol Calculable {
     func area() -> Double
 }
@@ -260,13 +229,76 @@ struct Circulo: Calculable {
         return 3.1416 * radio * radio
     }
 }
-
-let cuadrado = Cuadrado(lado: 5.0)
-print(cuadrado.area())   // 25.0
-
-let circulo = Circulo(radio: 3.0)
-print(circulo.area())    // 28.2744
 ```
+
+---
+
+### Repaso — Los 3 Esqueletos (Lecciones 6-8)
+
+Estos son los patrones mínimos que debes poder escribir de memoria.
+
+---
+
+**Esqueleto 1 — Optional**
+
+```swift
+func runPlayground() {
+
+    var x: Tipo? = nil
+    if let x = x {
+        // x existe
+    } else {
+        // x es nil
+    }
+
+}
+```
+
+---
+
+**Esqueleto 2 — Struct y Class**
+
+```swift
+struct Nombre {
+    var propiedad: Tipo
+}
+
+class Nombre {
+    var propiedad: Tipo
+    init(propiedad: Tipo) {
+        self.propiedad = propiedad
+    }
+}
+```
+
+---
+
+**Esqueleto 3 — Protocolo**
+
+```swift
+protocol Nombre {
+    func metodo() -> Tipo
+}
+
+struct Adoptante: Nombre {
+    func metodo() -> Tipo {
+        return valor
+    }
+}
+```
+
+---
+
+**Errores comunes a evitar:**
+
+| Error | Incorrecto | Correcto |
+|-------|-----------|---------|
+| Optional sin `:` | `var x Tipo? = nil` | `var x: Tipo? = nil` |
+| `{` en la propiedad de class | `var propiedad: Tipo {` | `var propiedad: Tipo` |
+| `{` en init | `init(propiedad: Tipo)` | `init(propiedad: Tipo) {` |
+| Protocolo con `:` | `protocol Nombre: Tipo` | `protocol Nombre` |
+| Adoptante sin protocolo | `struct Adoptante` | `struct Adoptante: Nombre` |
+| Tipos dentro de runPlayground() | struct/class/protocol adentro | van **fuera** de la función |
 
 ---
 
@@ -276,74 +308,76 @@ print(circulo.area())    // 28.2744
 
 **¿Cuál es la diferencia entre `let` y `var`?**
 
-`let` declara una constante cuyo valor no puede cambiar después de ser asignado. `var` declara una variable cuyo valor puede modificarse. En Swift se recomienda usar `let` siempre que sea posible y solo usar `var` cuando el valor necesite cambiar.
+`let` declara una constante cuyo valor no puede cambiar. `var` declara una variable cuyo valor puede modificarse. Se recomienda usar `let` siempre que sea posible.
 
 ---
 
 **¿Cuál es la diferencia entre un Array y un Diccionario?**
 
-Un Array es una colección ordenada de elementos del mismo tipo, accesibles por índice numérico que empieza en 0. Un Diccionario es una colección de pares clave-valor donde se accede a cada elemento por su clave. Se usa Array cuando el orden importa y Diccionario cuando se necesita describir algo con etiquetas.
+Un Array es una colección ordenada accesible por índice numérico. Un Diccionario es una colección de pares clave-valor accesible por nombre.
 
 ---
 
 **¿Qué es un Optional en Swift?**
 
-Un Optional es un tipo que puede contener un valor o puede ser `nil`. Se declara con `?` después del tipo. Swift obliga a manejar los optionals explícitamente para evitar crashes por valores nulos.
+Un Optional es un tipo que puede contener un valor o ser `nil`. Se declara con `?` después del tipo. Swift obliga a manejarlo explícitamente para evitar crashes.
 
 ---
 
 **¿Cómo se maneja un Optional de forma segura?**
 
-La forma más segura es usando `if let`, conocido como optional binding. También se puede usar `??` para proporcionar un valor por defecto cuando el optional es nil. Se debe evitar el force unwrap con `!` ya que causa un crash si el valor es nil.
+Con `if let` (optional binding) o `??` (valor por defecto). Se debe evitar `!` (force unwrap) porque causa crash si el valor es nil.
 
 ---
 
-**¿Cuál es la diferencia entre Struct y Class en Swift?**
+**¿Cuál es la diferencia entre Struct y Class?**
 
-Struct es un tipo por valor y Class es un tipo por referencia. Al copiar un Struct se crea una copia independiente. Al copiar una Class, ambas variables apuntan al mismo objeto. Además, Swift genera el inicializador de un Struct automáticamente, mientras que en una Class debes escribirlo manualmente.
+Struct es tipo por valor — al copiar se crea una copia independiente. Class es tipo por referencia — al copiar ambas variables apuntan al mismo objeto. Struct genera el `init` automáticamente, Class no.
 
 ---
 
 **¿Cuándo usarías Struct y cuándo Class?**
 
-En Swift se prefiere Struct por defecto. Se usa Class cuando se necesita herencia, cuando el objeto debe ser compartido entre distintas partes del código, o cuando se necesita un ciclo de vida controlado.
+Se prefiere Struct por defecto. Class se usa cuando se necesita herencia o compartir el mismo objeto entre distintas partes del código.
 
 ---
 
 **¿Qué es `nil` en Swift?**
 
-`nil` representa la ausencia de valor. Es diferente a un string vacío `""` o un cero `0`, que son valores existentes. Solo las variables declaradas como Optional pueden ser `nil`.
+`nil` representa la ausencia de valor. Solo las variables Optional pueden ser `nil`.
 
 ---
 
 **¿Qué significa `self` dentro de una Class?**
 
-`self` hace referencia a la instancia actual del objeto. Se usa dentro del `init` para distinguir entre las propiedades del objeto y los parámetros que tienen el mismo nombre.
-
-```swift
-init(marca: String) {
-    self.marca = marca  // self.marca es la propiedad, marca es el parámetro
-}
-```
+`self` hace referencia a la instancia actual. Se usa en el `init` para distinguir entre la propiedad del objeto y el parámetro con el mismo nombre.
 
 ---
 
 **¿Cuál es la diferencia entre `==` y `=`?**
 
-`=` es el operador de asignación. `==` es el operador de comparación — comprueba si dos valores son iguales y retorna un Bool.
+`=` asigna un valor. `==` compara dos valores y retorna un Bool.
 
 ---
 
 **¿Qué es el operador módulo `%`?**
 
-El operador `%` retorna el resto de una división entera. Se usa comúnmente para saber si un número es par: si `numero % 2 == 0` el número es par.
+Retorna el resto de una división entera. `numero % 2 == 0` indica que el número es par.
 
 ---
 
 **¿Qué es un protocolo en Swift?**
 
-Un protocolo es un contrato que define qué métodos o propiedades debe tener un tipo, sin implementarlos. Cualquier struct o class que adopte el protocolo está obligado a implementar lo que exige. Es la base del patrón de diseño orientado a protocolos (Protocol-Oriented Programming), muy usado en Swift e iOS.
+Un protocolo es un contrato que define qué métodos o propiedades debe tener un tipo, sin implementarlos. El tipo que lo adopta está obligado a implementar todo lo que exige. Es la base del Protocol-Oriented Programming en Swift.
 
 ---
 
-*Archivo de práctica: `AI Learning/Playground.swift`*
+**¿Cuál es la diferencia entre un protocolo y un struct?**
+
+El protocolo define el contrato (qué debe tener). El struct es el tipo concreto que firma ese contrato e implementa lo que se le exige. Un struct adopta un protocolo escribiendo su nombre después de `:`.
+
+---
+
+*Archivo de práctica: `AI Learning/Playground.swift`*  
+*Branch con notas completas: `main`*  
+*Branch para practicar en blanco: `practica`*
