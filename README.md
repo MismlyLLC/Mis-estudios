@@ -6,7 +6,7 @@
 
 Al abrir un chat nuevo con Claude, pega este prompt:
 
-> "Continuemos con el estudio de Swift. Completé las lecciones 1-7 (Variables, Condicionales, Loops, Funciones, Arrays, Optionals, Structs y Classes). Mi archivo de trabajo es AI Learning/AI Learning/Playground.swift. El repositorio está en github.com/MismlyLLC/Mis-estudios. La siguiente lección es Protocolos. Actualiza la lección pendiente según el README del repositorio."
+> "Continuemos con el estudio de Swift. Completé las lecciones 1-8 (Variables, Condicionales, Loops, Funciones, Arrays, Optionals, Structs, Classes y Protocolos). Mi archivo de trabajo es AI Learning/AI Learning/Playground.swift. El repositorio está en github.com/MismlyLLC/Mis-estudios. La siguiente lección es LeetCode Easy en Swift. Actualiza la lección pendiente según el README del repositorio."
 
 **Al terminar cada sesión pedir:**
 > "Genera el HTML del día para imprimir, actualiza el README con el nuevo progreso y guarda la memoria para la próxima sesión."
@@ -24,7 +24,7 @@ Al abrir un chat nuevo con Claude, pega este prompt:
 | 5 | Arrays y Diccionarios | Completada |
 | 6 | Optionals | Completada |
 | 7 | Structs y Classes | Completada |
-| 8 | Protocolos | Pendiente |
+| 8 | Protocolos | Completada |
 | 9 | LeetCode Easy en Swift | Pendiente |
 
 ---
@@ -179,12 +179,6 @@ print(edad ?? 0)
 print(apellido!)  // crash si apellido es nil
 ```
 
-**Diferencias importantes:**
-- `String` — siempre tiene valor, nunca puede ser nil
-- `String?` — puede tener valor o puede ser nil
-- `""` — existe pero está vacío
-- `nil` — no existe ningún valor
-
 ---
 
 ### Lección 7 — Structs y Classes
@@ -201,9 +195,6 @@ struct Persona {
 }
 
 var p1 = Persona(nombre: "Nicolas", edad: 25, ciudad: "Antofagasta")
-var p2 = p1
-p2.nombre = "Juan"
-print(p1.nombre)  // "Nicolas" — p1 no cambió
 ```
 
 **Class — tipo por referencia (Reference Type)**
@@ -220,11 +211,61 @@ class Vehiculo {
         self.velocidad = velocidad
     }
 }
+```
 
-var v1 = Vehiculo(marca: "Toyota", velocidad: 120)
-var v2 = v1
-v2.marca = "Honda"
-print(v1.marca)  // "Honda" — v1 también cambió
+---
+
+### Lección 8 — Protocolos
+
+Un protocolo es un "contrato" que define qué métodos o propiedades debe tener un tipo, sin implementarlos.
+
+- Se define con `protocol`
+- Un struct o class adopta el protocolo escribiendo su nombre después de `:`
+- Si adoptas un protocolo, **debes** implementar todo lo que exige
+- Un tipo puede adoptar múltiples protocolos separados por coma
+
+```swift
+protocol Saludable {
+    func saludar() -> String
+}
+
+struct Estudiante: Saludable {
+    let nombre: String
+    let carrera: String
+
+    func saludar() -> String {
+        return "Hola, soy \(nombre) y estudio \(carrera)"
+    }
+}
+
+let e = Estudiante(nombre: "Nicolas", carrera: "Administración")
+print(e.saludar())  // "Hola, soy Nicolas y estudio Administración"
+```
+
+```swift
+protocol Calculable {
+    func area() -> Double
+}
+
+struct Cuadrado: Calculable {
+    var lado: Double
+    func area() -> Double {
+        return lado * lado
+    }
+}
+
+struct Circulo: Calculable {
+    var radio: Double
+    func area() -> Double {
+        return 3.1416 * radio * radio
+    }
+}
+
+let cuadrado = Cuadrado(lado: 5.0)
+print(cuadrado.area())   // 25.0
+
+let circulo = Circulo(radio: 3.0)
+print(circulo.area())    // 28.2744
 ```
 
 ---
@@ -247,31 +288,31 @@ Un Array es una colección ordenada de elementos del mismo tipo, accesibles por 
 
 **¿Qué es un Optional en Swift?**
 
-Un Optional es un tipo que puede contener un valor o puede ser `nil`. Se declara con `?` después del tipo. Swift obliga a manejar los optionals explícitamente para evitar crashes por valores nulos, lo cual es una de las principales características de seguridad del lenguaje.
+Un Optional es un tipo que puede contener un valor o puede ser `nil`. Se declara con `?` después del tipo. Swift obliga a manejar los optionals explícitamente para evitar crashes por valores nulos.
 
 ---
 
 **¿Cómo se maneja un Optional de forma segura?**
 
-La forma más segura es usando `if let`, conocido como optional binding. Esto desempaqueta el optional solo si tiene valor, evitando un crash. También se puede usar `??` para proporcionar un valor por defecto cuando el optional es nil. Se debe evitar el force unwrap con `!` ya que causa un crash si el valor es nil.
+La forma más segura es usando `if let`, conocido como optional binding. También se puede usar `??` para proporcionar un valor por defecto cuando el optional es nil. Se debe evitar el force unwrap con `!` ya que causa un crash si el valor es nil.
 
 ---
 
 **¿Cuál es la diferencia entre Struct y Class en Swift?**
 
-La diferencia principal es que Struct es un tipo por valor y Class es un tipo por referencia. Cuando copias un Struct se crea una copia completamente independiente. Cuando copias una Class, ambas variables apuntan al mismo objeto en memoria, por lo que modificar una afecta a la otra. Además, Swift genera el inicializador de un Struct automáticamente, mientras que en una Class debes escribirlo manualmente.
+Struct es un tipo por valor y Class es un tipo por referencia. Al copiar un Struct se crea una copia independiente. Al copiar una Class, ambas variables apuntan al mismo objeto. Además, Swift genera el inicializador de un Struct automáticamente, mientras que en una Class debes escribirlo manualmente.
 
 ---
 
 **¿Cuándo usarías Struct y cuándo Class?**
 
-En Swift se prefiere Struct por defecto. Se usa Class cuando se necesita herencia, cuando el objeto debe ser compartido entre distintas partes del código, o cuando se necesita un ciclo de vida controlado. En iOS, por ejemplo, los modelos de datos suelen ser Structs y los ViewControllers son Classes.
+En Swift se prefiere Struct por defecto. Se usa Class cuando se necesita herencia, cuando el objeto debe ser compartido entre distintas partes del código, o cuando se necesita un ciclo de vida controlado.
 
 ---
 
 **¿Qué es `nil` en Swift?**
 
-`nil` representa la ausencia de valor. Es diferente a un string vacío `""` o un cero `0`, que son valores existentes. Solo las variables declaradas como Optional pueden ser `nil`. Swift no permite que una variable normal sea `nil`, lo que previene muchos errores comunes.
+`nil` representa la ausencia de valor. Es diferente a un string vacío `""` o un cero `0`, que son valores existentes. Solo las variables declaradas como Optional pueden ser `nil`.
 
 ---
 
@@ -289,13 +330,19 @@ init(marca: String) {
 
 **¿Cuál es la diferencia entre `==` y `=`?**
 
-`=` es el operador de asignación — asigna un valor a una variable. `==` es el operador de comparación — comprueba si dos valores son iguales y retorna un Bool.
+`=` es el operador de asignación. `==` es el operador de comparación — comprueba si dos valores son iguales y retorna un Bool.
 
 ---
 
 **¿Qué es el operador módulo `%`?**
 
-El operador `%` retorna el resto de una división entera. Se usa comúnmente para saber si un número es par: si `numero % 2 == 0` el número es par, si el resultado es `1` es impar.
+El operador `%` retorna el resto de una división entera. Se usa comúnmente para saber si un número es par: si `numero % 2 == 0` el número es par.
+
+---
+
+**¿Qué es un protocolo en Swift?**
+
+Un protocolo es un contrato que define qué métodos o propiedades debe tener un tipo, sin implementarlos. Cualquier struct o class que adopte el protocolo está obligado a implementar lo que exige. Es la base del patrón de diseño orientado a protocolos (Protocol-Oriented Programming), muy usado en Swift e iOS.
 
 ---
 
