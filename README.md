@@ -6,7 +6,7 @@
 
 Al abrir un chat nuevo con Claude, pega este prompt:
 
-> "Continuemos con el estudio de Swift. Completé las lecciones 1-8 y el repaso de esqueletos. Mi archivo de trabajo es AI Learning/AI Learning/Playground.swift. El repositorio está en github.com/MismlyLLC/Mis-estudios. La siguiente lección es LeetCode Easy en Swift. Actualiza la lección pendiente según el README del repositorio."
+> "Continuemos con el estudio de Swift. Completé las lecciones 1-8, el repaso de esqueletos, y empecé la Lección 9 (LeetCode Easy): resolví los ejercicios 1, 2 y 3 en AI Learning/Leccion9_LeetCode.swift. El repositorio está en github.com/MismlyLLC/Mis-estudios. Sigo con el ejercicio 4 de la Lección 9. Método de estudio: creamos archivos .swift con comentarios-guía y yo escribo el código siguiendo las instrucciones; luego lo ejecutas y me corriges. Actualiza el progreso según el README."
 
 **Al terminar cada sesión pedir:**
 > "Pasa todo lo que vimos hoy al README para imprimir, actualiza el progreso y guarda la memoria para la próxima sesión."
@@ -26,7 +26,7 @@ Al abrir un chat nuevo con Claude, pega este prompt:
 | 7 | Structs y Classes | Completada |
 | 8 | Protocolos | Completada |
 | — | Repaso de Esqueletos 6-8 | Completado |
-| 9 | LeetCode Easy en Swift | Pendiente |
+| 9 | LeetCode Easy en Swift | En curso (ej. 1-3 hechos) |
 
 ---
 
@@ -378,6 +378,60 @@ El protocolo define el contrato (qué debe tener). El struct es el tipo concreto
 
 ---
 
-*Archivo de práctica: `AI Learning/Playground.swift`*  
+## Lección 9 — LeetCode Easy en Swift (en curso)
+
+*Archivo de práctica: `AI Learning/Leccion9_LeetCode.swift`*
+
+**Qué es LeetCode:** una web con problemas de programación por dificultad (Easy → Medium → Hard). Las entrevistas técnicas de software developer usan problemas de ese estilo, así que se practica ahí. Resolver uno = escribir un **algoritmo** (una pieza de lógica), NO una app completa.
+
+**Formato:** te dan una función a medio hacer (la "firma") y tú completas el cuerpo `{ }`.
+
+### Ejercicios resueltos
+
+```swift
+// Ej. 1 — ¿Número par?
+func esPar(numero: Int) -> Bool {
+    if numero % 2 == 0 {
+        return true
+    } else {
+        return false
+    }
+}
+
+// Ej. 2 — El mayor de dos números
+func elMayor(a: Int, b: Int) -> Int {
+    if a > b {
+        return a
+    } else {
+        return b
+    }
+}
+
+// Ej. 3 — Clasificar un número (3 caminos con else if)
+func clasificar(numero: Int) -> String {
+    if numero > 0 {
+        return "positivo"
+    } else if numero < 0 {
+        return "negativo"
+    } else {
+        return "cero"
+    }
+}
+```
+
+### Conceptos afianzados hoy
+
+- **`flecha -> ⟷ return` van juntos:** si una función promete `-> Tipo`, DEBE tener `return` de ese tipo. Si no → error *"missing return... expected to return 'Tipo'"*.
+- **Swift compila todo el archivo junto:** si UNA función tiene error, no corre NADA (aunque el resto esté bien). Como una cadena: un eslabón roto detiene todo.
+- **Las llaves se emparejan:** cada `{` que abre necesita su `}` que cierra. El `else` va pegado: `} else {`. Un `return` NO lleva llave después.
+- **Dos tipos de error:** de *lógica* (pensar mal qué hacer, lo difícil) vs. de *sintaxis* (un símbolo mal puesto, lo fácil de arreglar). Equivocarse en llaves/comas es normalísimo, hasta para expertos.
+
+### Pendiente
+- Ejercicio 4 en adelante (seguir con más problemas Easy)
+
+---
+
+*Archivo de práctica actual: `AI Learning/Leccion9_LeetCode.swift`*  
+*Archivo de lecciones 1-8: `AI Learning/Playground.swift`*  
 *Branch con notas completas: `main`*  
 *Branch para practicar en blanco: `practica`*
