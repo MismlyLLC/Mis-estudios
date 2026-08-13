@@ -417,6 +417,39 @@ func clasificar(numero: Int) -> String {
         return "cero"
     }
 }
+
+// Ej. 4 — Sumar del 1 al N (for + acumulador)
+func sumarHasta(n: Int) -> Int {
+    var total = 0
+    for i in 1...n {
+        total = total + i
+    }
+    return total
+}
+
+// Ej. 5 — El mayor de una lista (for sobre array + if)
+func mayorDeLista(numeros: [Int]) -> Int {
+    var mayor = numeros[0]
+    for numero in numeros {
+        if numero > mayor {
+            mayor = numero
+        }
+    }
+    return mayor
+}
+
+// Ej. 6 — TWO SUM 🏆 (loop anidado + índices)
+// Devuelve las POSICIONES (índices) de los dos números que suman target.
+func twoSum(numeros: [Int], target: Int) -> [Int] {
+    for i in 0..<numeros.count {
+        for j in (i + 1)..<numeros.count {
+            if numeros[i] + numeros[j] == target {
+                return [i, j]
+            }
+        }
+    }
+    return []
+}
 ```
 
 ### Conceptos afianzados hoy
@@ -425,9 +458,16 @@ func clasificar(numero: Int) -> String {
 - **Swift compila todo el archivo junto:** si UNA función tiene error, no corre NADA (aunque el resto esté bien). Como una cadena: un eslabón roto detiene todo.
 - **Las llaves se emparejan:** cada `{` que abre necesita su `}` que cierra. El `else` va pegado: `} else {`. Un `return` NO lleva llave después.
 - **Dos tipos de error:** de *lógica* (pensar mal qué hacer, lo difícil) vs. de *sintaxis* (un símbolo mal puesto, lo fácil de arreglar). Equivocarse en llaves/comas es normalísimo, hasta para expertos.
+- **`for` = repetir, `if` = decidir.** El `for` crea su variable (`i`) solo, sin `var`/`let`; solo existe dentro del loop.
+- **Rangos:** `1...n` cerrado (incluye n) vs `0..<n` abierto (no incluye n). Para índices de array se usa `0..<numeros.count` porque las posiciones empiezan en 0.
+- **`.count`** = cuántos elementos tiene un array. `numeros[i]` = el elemento en la posición i.
+- **Loop dentro de loop:** por cada valor de `i` (lento), `j` (rápido) recorre TODO lo que le queda. `j` empieza en `i+1` para no repetir pares ni sumar un número consigo mismo.
+- **Definir vs. usar:** los parámetros (numeros, target) están vacíos en la definición; los valores reales se pasan al LLAMAR la función en `runPlayground()`.
+- **Two Sum devuelve POSICIONES (índices), no valores ni la suma.** `[0, 1]`, no `[2, 7]`.
+- **Función con varios parámetros:** separados por coma, cada uno `nombre: Tipo`.
 
 ### Pendiente
-- Ejercicio 4 en adelante (seguir con más problemas Easy)
+- Two Sum resuelto. Siguientes: más problemas Easy (invertir un String, contar vocales, FizzBuzz, ¿palíndromo?), o empezar a conectar con SwiftUI (la interfaz visual) más adelante.
 
 ---
 

@@ -110,6 +110,170 @@ func clasificar(numero: Int) -> String {
 
 
 // =========================================================
+// EJERCICIO 4 — Sumar del 1 al N
+// =========================================================
+//
+// ENUNCIADO:
+//   Recibe un número N y devuelve la SUMA de todos los
+//   números del 1 hasta N (incluido).
+//
+// EJEMPLOS:
+//   sumarHasta(n: 5)   → 15   (1 + 2 + 3 + 4 + 5)
+//   sumarHasta(n: 3)   → 6    (1 + 2 + 3)
+//   sumarHasta(n: 1)   → 1
+//
+// CONCEPTO NUEVO: acumular con un loop
+//   - Creamos una variable "total" que empieza en 0
+//   - Recorremos del 1 al n con un for
+//   - En cada vuelta le SUMAMOS el número a total
+//   - Al final devolvemos total
+//
+// ESTRUCTURA (complétala):
+//   func sumarHasta(n: Int) -> Int {
+//       var total = 0                 // el acumulador, empieza en 0
+//       for i in 1...n {              // recorre 1, 2, 3, ... , n
+//           total = total + i         // le sumo i a total en cada vuelta
+//       }
+//       return total                  // devuelvo el resultado final
+//   }
+//
+// OJO:
+//   - "total" es var (cambia en cada vuelta), no let
+//   - el return va AFUERA del for (después de que termine el loop)
+
+func sumarHasta(n: Int) -> Int {
+
+    // ESCRIBE AQUÍ 👇
+    
+    var total = 0
+    for i in 1...n {
+        total = total + i
+    }
+    return total
+}
+
+
+// =========================================================
+// EJERCICIO 5 — El mayor de una lista
+// =========================================================
+//
+// ENUNCIADO:
+//   Recibe un array de enteros y devuelve el número MÁS
+//   GRANDE de la lista.
+//
+// EJEMPLOS:
+//   mayorDeLista(numeros: [3, 9, 1, 7])   → 9
+//   mayorDeLista(numeros: [5, 2, 8, 8])   → 8
+//   mayorDeLista(numeros: [10])           → 10
+//
+// CONCEPTO NUEVO: recorrer un ARRAY con un for
+//   Antes recorrías números (1...n). Ahora recorres los
+//   ELEMENTOS de un array, uno por uno:
+//
+//       for numero in numeros {
+//           // aquí "numero" es cada elemento de la lista
+//       }
+//
+// LA ESTRATEGIA (el acumulador, pero para el máximo):
+//   1. Guarda el PRIMER elemento como "el mayor hasta ahora"
+//   2. Recorre la lista. Si encuentras uno más grande,
+//      actualiza "el mayor hasta ahora"
+//   3. Al final, ese es el mayor de todos
+//
+// ESTRUCTURA (complétala):
+//   func mayorDeLista(numeros: [Int]) -> Int {
+//       var mayor = numeros[0]        // asumo que el 1º es el mayor
+//       for numero in numeros {       // recorro toda la lista
+//           if numero > mayor {       // ¿encontré uno más grande?
+//               mayor = numero        // sí → lo guardo como el nuevo mayor
+//           }
+//       }
+//       return mayor                  // devuelvo el mayor encontrado
+//   }
+//
+// OJO:
+//   - numeros[0] es el PRIMER elemento (los índices empiezan en 0)
+//   - "mayor" es var porque va cambiando
+//   - AQUÍ SÍ hay un if adentro del for (para comparar)
+
+func mayorDeLista(numeros: [Int]) -> Int {
+    var mayor = numeros[0]
+    for numero in numeros {
+        if numero > mayor {
+            mayor = numero
+        }
+    }
+    return mayor
+}
+
+
+// =========================================================
+// EJERCICIO 6 — TWO SUM  (el famoso 🏆)
+// =========================================================
+//
+// ENUNCIADO:
+//   Recibe un array de enteros y un número "target".
+//   Devuelve los ÍNDICES (posiciones) de los dos números
+//   que sumados dan el target.
+//
+// EJEMPLOS:
+//   twoSum(numeros: [2, 7, 11, 15], target: 9)  → [0, 1]
+//     (porque numeros[0] + numeros[1] = 2 + 7 = 9)
+//   twoSum(numeros: [3, 2, 4], target: 6)       → [1, 2]
+//     (porque numeros[1] + numeros[2] = 2 + 4 = 6)
+//
+// CONCEPTO NUEVO: un loop DENTRO de otro loop
+//   Para probar CADA PAR de números, necesitas recorrer la
+//   lista dos veces, una dentro de la otra.
+//
+//   Usamos los ÍNDICES (posiciones) en vez de los valores,
+//   porque hay que devolver posiciones:
+//     - numeros.count es cuántos elementos hay
+//     - numeros[i] es el elemento en la posición i
+//
+//   for i in 0..<numeros.count {          // primer número
+//       for j in (i + 1)..<numeros.count {  // segundo número
+//           // aquí comparo numeros[i] + numeros[j]
+//       }
+//   }
+//
+//   ¿Por qué j empieza en (i + 1)?
+//     Para no sumar un número consigo mismo y no repetir pares.
+//
+// LA ESTRATEGIA:
+//   1. Recorro cada posición i
+//   2. Para cada i, recorro las posiciones siguientes j
+//   3. Si numeros[i] + numeros[j] == target → devuelvo [i, j]
+//   4. Si nunca encuentro, devuelvo [] (lista vacía)
+//
+// ESTRUCTURA (complétala):
+//   func twoSum(numeros: [Int], target: Int) -> [Int] {
+//       for i in 0..<numeros.count {
+//           for j in (i + 1)..<numeros.count {
+//               if numeros[i] + numeros[j] == target {
+//                   return [i, j]
+//               }
+//           }
+//       }
+//       return []
+//   }
+//
+// OJO:
+//   - El tipo de retorno es [Int] (una lista, no un número)
+//   - return [i, j] devuelve una lista con las dos posiciones
+//   - El return [] del final es "no encontré nada"
+
+func twoSum(numeros: [Int], target: Int) -> [Int] {
+    for i in 0..<numeros.count {
+        for j in (i + 1)..<numeros.count {
+            if numeros[i] + numeros[j] == target {
+                return [i, j]
+            }
+        }
+    }
+    return []
+}
+// =========================================================
 // ZONA DE PRUEBAS — aquí se ejecutan tus funciones
 // =========================================================
 //
@@ -130,6 +294,20 @@ func runPlayground() {
     print(clasificar(numero: 5))    // debería imprimir: positivo
     print(clasificar(numero: -3))   // debería imprimir: negativo
     print(clasificar(numero: 0))    // debería imprimir: cero
+
+    // --- Prueba Ejercicio 4 ---
+    print(sumarHasta(n: 5))   // debería imprimir: 15
+    print(sumarHasta(n: 3))   // debería imprimir: 6
+    print(sumarHasta(n: 1))   // debería imprimir: 1
+
+    // --- Prueba Ejercicio 5 ---
+    print(mayorDeLista(numeros: [3, 9, 1, 7]))   // debería imprimir: 9
+    print(mayorDeLista(numeros: [5, 2, 8, 8]))   // debería imprimir: 8
+    print(mayorDeLista(numeros: [10]))           // debería imprimir: 10
+
+    // --- Prueba Ejercicio 6 (Two Sum) ---
+    print(twoSum(numeros: [2, 7, 11, 15], target: 9))   // debería imprimir: [0, 1]
+    print(twoSum(numeros: [3, 2, 4], target: 6))        // debería imprimir: [1, 2]
 
 }
 
