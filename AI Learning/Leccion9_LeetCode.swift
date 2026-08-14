@@ -274,6 +274,122 @@ func twoSum(numeros: [Int], target: Int) -> [Int] {
     return []
 }
 // =========================================================
+// EJERCICIO 7 — FIZZBUZZ  (clásico de entrevistas 🎤)
+// =========================================================
+//
+// ENUNCIADO:
+//   Recorre los números del 1 al N e imprime:
+//     - "FizzBuzz" si el número es divisible por 3 Y por 5
+//     - "Fizz"     si es divisible SOLO por 3
+//     - "Buzz"     si es divisible SOLO por 5
+//     - el número  si no es divisible por ninguno
+//
+// EJEMPLO (con n = 15):
+//   1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14, FizzBuzz
+//
+// PISTAS:
+//   - "divisible por 3" se comprueba con:  numero % 3 == 0
+//   - "divisible por 5" se comprueba con:  numero % 5 == 0
+//   - Esta función NO devuelve nada (no lleva flecha) → solo imprime
+//
+// ⚠️ EL ORDEN IMPORTA MUCHÍSIMO:
+//   Primero pregunta por AMBOS (3 y 5), porque si preguntas
+//   por 3 solo primero, un número como 15 caería en "Fizz"
+//   y nunca llegaría a "FizzBuzz". Empieza por el caso más
+//   específico.
+//
+// ESTRUCTURA (complétala):
+//   func fizzBuzz(n: Int) {
+//       for i in 1...n {
+//           if i % 3 == 0 && i % 5 == 0 {
+//               print("FizzBuzz")
+//           } else if i % 3 == 0 {
+//               print("Fizz")
+//           } else if i % 5 == 0 {
+//               print("Buzz")
+//           } else {
+//               print(i)
+//           }
+//       }
+//   }
+//
+// RECORDATORIO: && significa "Y" (las dos cosas a la vez)
+
+func fizzBuzz(n: Int) {
+    for i in 1...n {
+        if i % 3 == 0 && i % 5 == 0 {
+            print("FizzBuzz")
+        } else if i % 3 == 0 {
+            print("Fizz")
+        } else if i % 5 == 0 {
+            print("Buzz")
+        } else {
+            print(i)
+        }
+    }
+}
+
+
+// =========================================================
+// RETO 1 — Contar los pares de una lista   (DESDE CERO 🔥)
+// =========================================================
+//
+// Este es tu primer reto SIN estructura de guía.
+// Piénsalo y escríbelo completo tú mismo.
+//
+// ENUNCIADO:
+//   Recibe un array de enteros y devuelve CUÁNTOS números
+//   pares hay en la lista.
+//
+// EJEMPLOS:
+//   contarPares(numeros: [1, 2, 3, 4, 5, 6])  → 3   (el 2, 4 y 6)
+//   contarPares(numeros: [7, 9, 11])          → 0   (ninguno es par)
+//   contarPares(numeros: [2, 4, 8])           → 3   (los tres)
+//
+// (Ya tienes TODO lo necesario: for, if, %, y un acumulador.
+//  Recuerda: un número es par si  numero % 2 == 0)
+
+func contarPares(numeros: [Int]) -> Int {
+    var contador = 0
+    for par in numeros {
+        if par % 2 == 0 {
+            contador = contador + 1
+        }
+    }
+    return contador
+}
+
+
+// =========================================================
+// RETO 2 — Contar los mayores que 10   (DESDE CERO 🔥)
+// =========================================================
+//
+// ENUNCIADO:
+//   Recibe un array de enteros y devuelve CUÁNTOS números
+//   son mayores que 10.
+//
+// EJEMPLOS:
+//   contarMayoresQue10(numeros: [5, 12, 8, 20, 3])  → 2   (el 12 y el 20)
+//   contarMayoresQue10(numeros: [1, 2, 3])          → 0   (ninguno)
+//   contarMayoresQue10(numeros: [11, 50, 99])       → 3   (los tres)
+//
+// (Mismo patrón que contarPares. Solo cambia la condición
+//  del if: en vez de "% 2 == 0", ahora es "> 10")
+
+func contarMayoresQue10(numeros: [Int]) -> Int {
+
+    // ESCRIBE AQUÍ 👇 — tú solo
+    var contador = 0
+    for numero in numeros {
+        if numero > 10 {
+            contador = contador + 1
+        }
+    }
+    return contador
+}
+
+
+// =========================================================
 // ZONA DE PRUEBAS — aquí se ejecutan tus funciones
 // =========================================================
 //
@@ -308,6 +424,19 @@ func runPlayground() {
     // --- Prueba Ejercicio 6 (Two Sum) ---
     print(twoSum(numeros: [2, 7, 11, 15], target: 9))   // debería imprimir: [0, 1]
     print(twoSum(numeros: [3, 2, 4], target: 6))        // debería imprimir: [1, 2]
+
+    // --- Prueba Ejercicio 7 (FizzBuzz) ---
+    fizzBuzz(n: 15)   // imprime del 1 al 15 con Fizz/Buzz/FizzBuzz
+
+    // --- Prueba RETO 1 (contar pares) ---
+    print(contarPares(numeros: [1, 2, 3, 4, 5, 6]))   // debería imprimir: 3
+    print(contarPares(numeros: [7, 9, 11]))           // debería imprimir: 0
+    print(contarPares(numeros: [2, 4, 8]))            // debería imprimir: 3
+
+    // --- Prueba RETO 2 (contar mayores que 10) ---
+    print(contarMayoresQue10(numeros: [5, 12, 8, 20, 3]))   // debería imprimir: 2
+    print(contarMayoresQue10(numeros: [1, 2, 3]))           // debería imprimir: 0
+    print(contarMayoresQue10(numeros: [11, 50, 99]))        // debería imprimir: 3
 
 }
 
