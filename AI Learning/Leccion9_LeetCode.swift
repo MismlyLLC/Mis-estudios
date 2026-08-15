@@ -473,6 +473,56 @@ func menorDeLista(numeros: [Int]) -> Int {
 
 
 // =========================================================
+// 🆕 MUNDO NUEVO: TRABAJAR CON TEXTO (String)
+// =========================================================
+//
+// Hasta ahora usaste números. Ahora toca TEXTO. Lo nuevo:
+//
+// 1. Un String se puede RECORRER letra por letra con un for:
+//        for letra in "hola" {
+//            print(letra)      // h, o, l, a  (una por línea)
+//        }
+//
+// 2. Para comparar una letra, va entre comillas DOBLES:
+//        if letra == "a" { ... }
+//
+// (¡Es el MISMO patrón del acumulador que ya dominas!
+//  Solo que ahora recorres letras en vez de números.)
+
+
+// =========================================================
+// RETO 6 — Contar cuántas veces aparece una letra
+// =========================================================
+//
+// ENUNCIADO:
+//   Recibe un texto y una letra. Devuelve CUÁNTAS veces
+//   aparece esa letra en el texto.
+//
+// EJEMPLOS:
+//   contarLetra(texto: "banana", letra: "a")   → 3
+//   contarLetra(texto: "hola", letra: "o")     → 1
+//   contarLetra(texto: "swift", letra: "z")    → 0
+//
+// PISTA: mismo molde de siempre 👇
+//   - un contador (var) que empieza en 0, ARRIBA del for
+//   - recorres cada letra del texto con:  for l in texto
+//   - un if que compara:  if l == letra
+//   - return del contador al final
+
+func contarLetra(texto: String, letra: Character) -> Int {
+
+    // ESCRIBE AQUÍ 👇 — hoja en blanco
+    var contador = 0
+    for l in texto {
+        if l == letra {
+            contador = contador + 1
+        }
+    }
+    return contador
+}
+
+
+// =========================================================
 // ZONA DE PRUEBAS — aquí se ejecutan tus funciones
 // =========================================================
 //
@@ -535,6 +585,11 @@ func runPlayground() {
     print(menorDeLista(numeros: [3, 9, 1, 7]))   // debería imprimir: 1
     print(menorDeLista(numeros: [5, 2, 8]))      // debería imprimir: 2
     print(menorDeLista(numeros: [10]))           // debería imprimir: 10
+
+    // --- Prueba RETO 6 (contar letra) ---
+    print(contarLetra(texto: "banana", letra: "a"))   // debería imprimir: 3
+    print(contarLetra(texto: "hola", letra: "o"))     // debería imprimir: 1
+    print(contarLetra(texto: "swift", letra: "z"))    // debería imprimir: 0
 
 }
 
