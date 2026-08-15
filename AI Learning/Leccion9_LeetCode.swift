@@ -390,6 +390,89 @@ func contarMayoresQue10(numeros: [Int]) -> Int {
 
 
 // =========================================================
+// RETO 3 — Sumar solo los pares   (DESDE CERO 🔥)
+// =========================================================
+//
+// ENUNCIADO:
+//   Recibe un array de enteros y devuelve la SUMA de los
+//   números pares (ignora los impares).
+//
+// EJEMPLOS:
+//   sumarPares(numeros: [1, 2, 3, 4])   → 6    (2 + 4)
+//   sumarPares(numeros: [10, 5, 20])    → 30   (10 + 20)
+//   sumarPares(numeros: [1, 3, 5])      → 0    (no hay pares)
+//
+// (Mezcla de dos cosas que ya sabes: acumular una SUMA
+//  como en sumarHasta, pero solo cuando el número es par)
+
+func sumarPares(numeros: [Int]) -> Int {
+    var suma = 0
+    for numero in numeros {
+        if numero.isMultiple(of: 2) {
+            suma = suma + numero
+        }
+    }
+    return suma
+}
+
+
+// =========================================================
+// RETO 4 — Contar cuántos son negativos   (DESDE CERO 🔥)
+// =========================================================
+//
+// ENUNCIADO:
+//   Recibe un array de enteros y devuelve CUÁNTOS números
+//   son negativos (menores que 0).
+//
+// EJEMPLOS:
+//   contarNegativos(numeros: [-1, 2, -3, 4])   → 2    (el -1 y el -3)
+//   contarNegativos(numeros: [5, 10, 15])      → 0
+//   contarNegativos(numeros: [-8, -2, -100])   → 3
+
+func contarNegativos(numeros: [Int]) -> Int {
+
+    // ESCRIBE AQUÍ 👇 — hoja en blanco
+    
+    var contador = 0
+    for numero in numeros {
+        if numero < 0 {
+            contador = contador + 1
+        }
+    }
+    return contador
+}
+
+
+// =========================================================
+// RETO 5 — El menor de una lista   (DESDE CERO 🔥)
+// =========================================================
+//
+// ENUNCIADO:
+//   Recibe un array de enteros y devuelve el número MÁS
+//   PEQUEÑO de la lista.
+//
+// EJEMPLOS:
+//   menorDeLista(numeros: [3, 9, 1, 7])   → 1
+//   menorDeLista(numeros: [5, 2, 8])      → 2
+//   menorDeLista(numeros: [10])           → 10
+//
+// (Es como mayorDeLista, pero al revés. Piensa: ¿con qué
+//  comparación te quedas con el MÁS PEQUEÑO?)
+
+func menorDeLista(numeros: [Int]) -> Int {
+
+    // ESCRIBE AQUÍ 👇 — hoja en blanco
+   var mayor = numeros[0]
+    for numero in numeros {
+        if numero < mayor {
+            mayor = numero
+        }
+    }
+    return mayor
+}
+
+
+// =========================================================
 // ZONA DE PRUEBAS — aquí se ejecutan tus funciones
 // =========================================================
 //
@@ -437,6 +520,21 @@ func runPlayground() {
     print(contarMayoresQue10(numeros: [5, 12, 8, 20, 3]))   // debería imprimir: 2
     print(contarMayoresQue10(numeros: [1, 2, 3]))           // debería imprimir: 0
     print(contarMayoresQue10(numeros: [11, 50, 99]))        // debería imprimir: 3
+
+    // --- Prueba RETO 3 (sumar pares) ---
+    print(sumarPares(numeros: [1, 2, 3, 4]))   // debería imprimir: 6
+    print(sumarPares(numeros: [10, 5, 20]))    // debería imprimir: 30
+    print(sumarPares(numeros: [1, 3, 5]))      // debería imprimir: 0
+
+    // --- Prueba RETO 4 (contar negativos) ---
+    print(contarNegativos(numeros: [-1, 2, -3, 4]))   // debería imprimir: 2
+    print(contarNegativos(numeros: [5, 10, 15]))      // debería imprimir: 0
+    print(contarNegativos(numeros: [-8, -2, -100]))   // debería imprimir: 3
+
+    // --- Prueba RETO 5 (menor de la lista) ---
+    print(menorDeLista(numeros: [3, 9, 1, 7]))   // debería imprimir: 1
+    print(menorDeLista(numeros: [5, 2, 8]))      // debería imprimir: 2
+    print(menorDeLista(numeros: [10]))           // debería imprimir: 10
 
 }
 
