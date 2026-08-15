@@ -523,6 +523,40 @@ func contarLetra(texto: String, letra: Character) -> Int {
 
 
 // =========================================================
+// RETO 7 — Contar vocales   (DESDE CERO 🔥)
+// =========================================================
+//
+// ENUNCIADO:
+//   Recibe un texto y devuelve CUÁNTAS vocales tiene
+//   (a, e, i, o, u).
+//
+// EJEMPLOS:
+//   contarVocales(texto: "hola")        → 2   (o, a)
+//   contarVocales(texto: "murcielago")  → 5   (u, i, e, a, o)
+//   contarVocales(texto: "xyz")         → 0
+//
+// LO NUEVO: comparar contra VARIAS letras con || ("O")
+//   Igual que contarLetra, pero en el if preguntas si la
+//   letra es a, O e, O i, O o, O u:
+//
+//     if l == "a" || l == "e" || l == "i" || l == "o" || l == "u" {
+//
+//   (|| significa "O" — basta que UNA sea verdadera)
+
+func contarVocales(texto: String) -> Int {
+
+    // ESCRIBE AQUÍ 👇 — hoja en blanco
+    var contador = 0
+    for l in texto {
+        if l == "a" || l == "e" || l == "i" || l == "o" || l == "u" {
+            contador = contador + 1
+        }
+    }
+    return contador
+}
+
+
+// =========================================================
 // ZONA DE PRUEBAS — aquí se ejecutan tus funciones
 // =========================================================
 //
@@ -590,6 +624,11 @@ func runPlayground() {
     print(contarLetra(texto: "banana", letra: "a"))   // debería imprimir: 3
     print(contarLetra(texto: "hola", letra: "o"))     // debería imprimir: 1
     print(contarLetra(texto: "swift", letra: "z"))    // debería imprimir: 0
+
+    // --- Prueba RETO 7 (contar vocales) ---
+    print(contarVocales(texto: "hola"))         // debería imprimir: 2
+    print(contarVocales(texto: "murcielago"))   // debería imprimir: 5
+    print(contarVocales(texto: "xyz"))          // debería imprimir: 0
 
 }
 
