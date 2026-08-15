@@ -557,6 +557,48 @@ func contarVocales(texto: String) -> Int {
 
 
 // =========================================================
+// RETO 8 — Invertir un texto   (DESDE CERO 🔥)
+// =========================================================
+//
+// ENUNCIADO:
+//   Recibe un texto y devuelve el mismo texto al REVÉS.
+//
+// EJEMPLOS:
+//   invertir(texto: "hola")   → "aloh"
+//   invertir(texto: "swift")  → "tfiws"
+//   invertir(texto: "a")      → "a"
+//
+// LA TÉCNICA (acumulador, pero con texto):
+//   - Empiezas con un texto VACÍO:  var resultado = ""
+//   - Recorres cada letra del texto original
+//   - A cada letra la pones DELANTE de lo que llevas:
+//         resultado = letra + resultado
+//     ¡El orden importa! Poniendo la letra ADELANTE, el
+//     texto se va armando al revés.
+//
+// COMO FUNCIONA con "hola":
+//   letra 'h' → resultado = "h" + ""     = "h"
+//   letra 'o' → resultado = "o" + "h"    = "oh"
+//   letra 'l' → resultado = "l" + "oh"   = "loh"
+//   letra 'a' → resultado = "a" + "loh"  = "aloh"  ✅
+//
+// OJO — un detalle nuevo:
+//   letra es un Character. Para pegarla a un String hay que
+//   convertirla con String(letra). O sea:
+//         resultado = String(letra) + resultado
+
+func invertir(texto: String) -> String {
+
+    // ESCRIBE AQUÍ 👇 — hoja en blanco
+    var resultado = ""
+    for letra in texto {
+        resultado = String(letra) + resultado
+    }
+    return resultado
+}
+
+
+// =========================================================
 // ZONA DE PRUEBAS — aquí se ejecutan tus funciones
 // =========================================================
 //
@@ -629,6 +671,11 @@ func runPlayground() {
     print(contarVocales(texto: "hola"))         // debería imprimir: 2
     print(contarVocales(texto: "murcielago"))   // debería imprimir: 5
     print(contarVocales(texto: "xyz"))          // debería imprimir: 0
+
+    // --- Prueba RETO 8 (invertir texto) ---
+    print(invertir(texto: "hola"))    // debería imprimir: aloh
+    print(invertir(texto: "swift"))   // debería imprimir: tfiws
+    print(invertir(texto: "a"))       // debería imprimir: a
 
 }
 
