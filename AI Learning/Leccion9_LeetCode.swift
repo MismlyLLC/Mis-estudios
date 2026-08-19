@@ -599,6 +599,51 @@ func invertir(texto: String) -> String {
 
 
 // =========================================================
+// RETO 9 — ¿Es palíndromo?   (DESDE CERO 🔥)
+// =========================================================
+//
+// ENUNCIADO:
+//   Un palíndromo es una palabra que se lee IGUAL al derecho
+//   y al revés. Recibe un texto y devuelve true si es
+//   palíndromo, o false si no.
+//
+// EJEMPLOS:
+//   esPalindromo(texto: "oso")    → true   (oso al revés es oso)
+//   esPalindromo(texto: "ana")    → true
+//   esPalindromo(texto: "hola")   → false  (al revés es aloh)
+//
+// LA IDEA CLAVE (reutilizas lo que YA hiciste 😏):
+//   1. Inviertes el texto (¡como en el RETO 8!)
+//   2. Comparas: ¿el texto original es IGUAL al invertido?
+//      - si son iguales  → es palíndromo → true
+//      - si son distintos → no lo es      → false
+//
+// PISTAS:
+//   - Devuelve Bool (true/false), así que -> Bool
+//   - Puedes invertir el texto con la MISMA técnica del reto 8
+//     (un var resultado = "" y for letra... resultado adelante)
+//   - Al final compara con ==:  if texto == invertido { ... }
+//
+// (No necesitas llamar a la función invertir; puedes escribir
+//  la inversión aquí dentro. Pero si quieres reutilizarla,
+//  también se vale: let invertido = invertir(texto: texto) )
+
+func esPalindromo(texto: String) -> Bool {
+
+    // ESCRIBE AQUÍ 👇 — hoja en blanco
+    var invertido = ""
+    for letra in texto {
+        invertido = String(letra) + invertido
+    }
+    if texto == invertido {
+        return true
+    } else {
+        return false
+    }
+}
+
+
+// =========================================================
 // ZONA DE PRUEBAS — aquí se ejecutan tus funciones
 // =========================================================
 //
@@ -676,6 +721,11 @@ func runPlayground() {
     print(invertir(texto: "hola"))    // debería imprimir: aloh
     print(invertir(texto: "swift"))   // debería imprimir: tfiws
     print(invertir(texto: "a"))       // debería imprimir: a
+
+    // --- Prueba RETO 9 (palíndromo) ---
+    print(esPalindromo(texto: "oso"))    // debería imprimir: true
+    print(esPalindromo(texto: "ana"))    // debería imprimir: true
+    print(esPalindromo(texto: "hola"))   // debería imprimir: false
 
 }
 
