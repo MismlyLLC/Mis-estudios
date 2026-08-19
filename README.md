@@ -452,6 +452,65 @@ func twoSum(numeros: [Int], target: Int) -> [Int] {
 }
 ```
 
+### Ejercicios de TEXTO (String) y while
+
+```swift
+// Reto 6 — Contar cuántas veces aparece una letra
+func contarLetra(texto: String, letra: Character) -> Int {
+    var contador = 0
+    for l in texto {              // recorrer un String letra por letra
+        if l == letra {           // comparar letras con comillas dobles
+            contador = contador + 1
+        }
+    }
+    return contador
+}
+
+// Reto 7 — Contar vocales (comparar contra varias con ||)
+func contarVocales(texto: String) -> Int {
+    var contador = 0
+    for l in texto {
+        if l == "a" || l == "e" || l == "i" || l == "o" || l == "u" {
+            contador = contador + 1
+        }
+    }
+    return contador
+}
+
+// Reto 8 — Invertir un texto (acumulador con la letra ADELANTE)
+func invertir(texto: String) -> String {
+    var resultado = ""
+    for letra in texto {
+        resultado = String(letra) + resultado   // letra adelante = se invierte
+    }
+    return resultado
+}
+
+// Reto 9 — ¿Palíndromo? (combina invertir + comparar)
+func esPalindromo(texto: String) -> Bool {
+    var invertido = ""
+    for letra in texto {
+        invertido = String(letra) + invertido   // PASO 1: invertir TODO
+    }
+    if texto == invertido {                       // PASO 2: comparar (afuera del for)
+        return true
+    } else {
+        return false
+    }
+}
+
+// Reto 10 — Sumar los dígitos de un número (while + % 10 y / 10)
+func sumarDigitos(numero: Int) -> Int {
+    var n = numero          // copia modificable (el parámetro es constante)
+    var suma = 0
+    while n > 0 {
+        suma = suma + (n % 10)   // saca el ÚLTIMO dígito y lo suma
+        n = n / 10               // borra el último dígito (división entera)
+    }
+    return suma
+}
+```
+
 ### Conceptos afianzados hoy
 
 - **`flecha -> ⟷ return` van juntos:** si una función promete `-> Tipo`, DEBE tener `return` de ese tipo. Si no → error *"missing return... expected to return 'Tipo'"*.
@@ -466,8 +525,24 @@ func twoSum(numeros: [Int], target: Int) -> [Int] {
 - **Two Sum devuelve POSICIONES (índices), no valores ni la suma.** `[0, 1]`, no `[2, 7]`.
 - **Función con varios parámetros:** separados por coma, cada uno `nombre: Tipo`.
 
+### Conceptos de TEXTO y while (nuevos)
+
+- **Recorrer un String con for:** `for letra in texto` da cada letra, una por una (de izquierda a derecha). Las letras se comparan con comillas dobles: `if l == "a"`.
+- **`Character` vs `String`:** una sola letra es `Character`. Para pegarla a un String hay que convertirla: `String(letra) + resultado`.
+- **Invertir = acumulador con la letra ADELANTE:** `resultado = String(letra) + resultado`. El `for` lee normal (h,o,l,a), pero como cada letra se pone delante, empuja a las anteriores y el texto sale al revés.
+- **`=` guarda, `==` compara:** `resultado = ...` es una ORDEN ("guarda esto"), NO una igualdad. `==` es una PREGUNTA ("¿son iguales?"). En el palíndromo se usan los dos.
+- **El orden de los pasos importa:** en el palíndromo, el `for` debe terminar de invertir TODO antes de comparar. El `if` va AFUERA del for.
+- **Tipo de retorno = tipo de respuesta:** pregunta sí/no → `Bool`; cuenta → `Int`; texto → `String`; lista → `[Int]`. Las funciones que empiezan con "es..." suelen devolver `Bool`.
+- **`while` = "mientras":** repite MIENTRAS una condición sea verdadera; para cuando se vuelve falsa. Se usa cuando NO sabes cuántas vueltas (vs `for`, que es para cantidad conocida). Orden: pregunta condición → si es sí, ejecuta el bloque → vuelve a preguntar.
+- **⚠️ Peligro loop infinito:** dentro de un `while` DEBES cambiar algo que acerque la condición a falsa (ej. `n = n / 10`), o nunca termina.
+- **"Pelar" un número:** `n % 10` da el ÚLTIMO dígito (el resto de dividir entre 10). `n / 10` lo BORRA. Funciona porque `%` da el resto y, entre 10, el resto es siempre el último dígito.
+- **División entera corta el decimal:** `123 / 10 = 12` (NO 12.3) porque son `Int`. Ese corte del decimal es justo lo que borra el último dígito. Con `Double` (123.0/10.0) sí daría 12.3.
+- **Parámetro = constante:** no puedes modificar un parámetro directamente (es como `let`). Si necesitas cambiarlo, haz una copia: `var n = numero`.
+
 ### Pendiente
-- Two Sum resuelto. Siguientes: más problemas Easy (invertir un String, contar vocales, FizzBuzz, ¿palíndromo?), o empezar a conectar con SwiftUI (la interfaz visual) más adelante.
+- Retos 1-10 resueltos (números Y texto, for Y while). Sumar dígitos (Reto 10) queda por escribir/ejecutar.
+- SwiftUI: proyecto `estudiosSwiftUI` creado, pero falta descargar el simulador de iOS (o conectar iPhone con cable) para ver el preview. Hacer en WiFi.
+- Siguientes ideas: contar palabras, FizzBuzz (ya visto), o entrar a SwiftUI cuando haya WiFi/cable.
 
 ---
 

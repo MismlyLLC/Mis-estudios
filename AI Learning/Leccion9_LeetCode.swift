@@ -644,6 +644,72 @@ func esPalindromo(texto: String) -> Bool {
 
 
 // =========================================================
+// RETO 10 — Sumar los dígitos de un número   (DESDE CERO 🔥)
+// =========================================================
+//
+// ENUNCIADO:
+//   Recibe un número entero y devuelve la SUMA de sus dígitos.
+//
+// EJEMPLOS:
+//   sumarDigitos(numero: 123)   → 6    (1 + 2 + 3)
+//   sumarDigitos(numero: 45)    → 9    (4 + 5)
+//   sumarDigitos(numero: 7)     → 7
+//
+// TÉCNICA NUEVA: "pelar" un número dígito por dígito 🧅
+//   Con dos operadores sacas los dígitos de derecha a izquierda:
+//
+//     numero % 10   → te da el ÚLTIMO dígito
+//                     (123 % 10 = 3)
+//     numero / 10   → le QUITA el último dígito
+//                     (123 / 10 = 12, porque es división ENTERA)
+//
+//   Repites eso en un loop hasta que el número llegue a 0.
+//
+// COMO FUNCIONA con 123:
+//   vuelta 1: 123 % 10 = 3  → suma 3.  Luego 123 / 10 = 12
+//   vuelta 2:  12 % 10 = 2  → suma 2.  Luego  12 / 10 = 1
+//   vuelta 3:   1 % 10 = 1  → suma 1.  Luego   1 / 10 = 0
+//   el número llegó a 0 → paramos.  suma total = 6 ✅
+//
+// LO NUEVO: usamos "while" en vez de "for"
+//   while repite MIENTRAS una condición sea verdadera:
+//
+//     while numero > 0 {
+//         // esto se repite hasta que numero deje de ser > 0
+//     }
+//
+// ESTRUCTURA (complétala):
+//   func sumarDigitos(numero: Int) -> Int {
+//       var n = numero          // copia para ir modificándola
+//       var suma = 0            // el acumulador
+//       while n > 0 {
+//           suma = suma + (n % 10)   // saco el último dígito y lo sumo
+//           n = n / 10               // le quito el último dígito
+//       }
+//       return suma
+//   }
+//
+// OJO:
+//   - Usamos "n" (una copia) porque vamos a ir achicando el número
+//   - n % 10 saca el dígito, n / 10 lo quita
+//   - el while para solo cuando n llega a 0
+
+func sumarDigitos(numero: Int) -> Int {
+    
+    // ESCRIBE AQUÍ 👇 — hoja en blanco
+    var n = numero
+    var suma = 0
+    while n > 0 {
+        suma = suma + (n % 10)
+        n = n / 10
+    }
+    return suma
+}
+    return 0   // ⬅️ borra esto al escribir tu solución
+}
+
+
+// =========================================================
 // ZONA DE PRUEBAS — aquí se ejecutan tus funciones
 // =========================================================
 //
@@ -726,6 +792,11 @@ func runPlayground() {
     print(esPalindromo(texto: "oso"))    // debería imprimir: true
     print(esPalindromo(texto: "ana"))    // debería imprimir: true
     print(esPalindromo(texto: "hola"))   // debería imprimir: false
+
+    // --- Prueba RETO 10 (sumar dígitos) ---
+    // print(sumarDigitos(numero: 123))   // debería imprimir: 6
+    // print(sumarDigitos(numero: 45))    // debería imprimir: 9
+    // print(sumarDigitos(numero: 7))     // debería imprimir: 7
 
 }
 
