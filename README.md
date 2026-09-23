@@ -26,7 +26,7 @@ Al abrir un chat nuevo con Claude, pega este prompt:
 | 7 | Structs y Classes | Completada |
 | 8 | Protocolos | Completada |
 | — | Repaso de Esqueletos 6-8 | Completado |
-| 9 | LeetCode Easy en Swift | En curso (ej. 1-3 hechos) |
+| 9 | LeetCode Easy en Swift | **Completada** (17/17 retos) |
 
 ---
 
@@ -378,7 +378,7 @@ El protocolo define el contrato (qué debe tener). El struct es el tipo concreto
 
 ---
 
-## Lección 9 — LeetCode Easy en Swift (en curso)
+## Lección 9 — LeetCode Easy en Swift (COMPLETADA ✅ 17/17)
 
 *Archivo de práctica: `AI Learning/Leccion9_LeetCode.swift`*
 
@@ -539,10 +539,74 @@ func sumarDigitos(numero: Int) -> Int {
 - **División entera corta el decimal:** `123 / 10 = 12` (NO 12.3) porque son `Int`. Ese corte del decimal es justo lo que borra el último dígito. Con `Double` (123.0/10.0) sí daría 12.3.
 - **Parámetro = constante:** no puedes modificar un parámetro directamente (es como `let`). Si necesitas cambiarlo, haz una copia: `var n = numero`.
 
+### Retos 11-17 — el cierre de la Lección 9 (21-22 sep 2026)
+
+```swift
+// RETO 11 — contar las palabras de una frase
+// RETO 12 — ¿es primo?          (bandera + CASOS BORDE)
+// RETO 13 — invertir un número  (while + acumulador que se apoya en sí mismo)
+// RETO 14 — promedio de una lista
+// RETO 15 — ¿está en la lista?  (return temprano dentro del for)
+// RETO 16 — filtrar los pares a una lista nueva  (.append)
+// RETO 17 — factorial           (acumulador que arranca en 1, no en 0)
+```
+
+Los 17 retos corren de principio a fin sin errores ni crashes.
+
+### Conceptos nuevos de esta tanda
+
+- **Qué es `return` de verdad (el concepto que más costó).** Una función es una máquina:
+  los datos ENTRAN por el paréntesis (el parámetro, que ya viene lleno) y el resultado
+  SALE por el `return`. En el `return` va **el nombre de la caja que llenaste**, nunca
+  un dato escrito a mano, ni lo que entró, ni el nombre de la función.
+- **`return` ≠ `print`.** `return` entrega el valor a quien llamó a la función; `print`
+  vive en el playground y solo MUESTRA lo que le entregaron. La función no sabe que
+  existe una pantalla: solo fabrica y entrega.
+- **`return` dentro de un bucle = salida de emergencia.** No corta solo el `for`: sale
+  de la función entera al instante. Por eso en `contiene` el `return true` va dentro
+  del `if` y el `return false` va fuera del `for`, sin `else`.
+- **Para decir "SÍ" basta UNO; para decir "NO" hay que haber mirado TODOS.** Es la razón
+  estructural de dónde va cada `return` en una búsqueda.
+- **Un `if` NO lleva `else` por defecto.** El `else` es la excepción, no la norma. Con
+  `return` casi nunca hace falta: si la condición se cumple la función se va, así que
+  llegar a la línea de abajo ya significa que no se cumplió. Y `else` solo puede ir
+  pegado al `}` de un `if` — nunca a un `for` ni a un `return`.
+- **`if` encadenados vs. independientes.** `if a { } else if b { }` es UNA decisión con
+  ramas. Dos `if` sueltos, uno detrás de otro, son DOS preguntas distintas. Si las
+  respuestas son distintas (una `false` y otra `true`), van sueltos.
+- **CASOS BORDE (*edge cases*).** Los valores raros de los extremos (el 0, el 1, la lista
+  vacía) donde la solución general no aplica. Se blindan ARRIBA del todo, con un `return`
+  temprano, antes de que empiece el código de verdad. En `esPrimo`, el 1 y el 2 son
+  exactamente los dos números que rompen el rango `2...(numero - 1)`, porque quedaría
+  `2...0` y `2...1` → *Fatal error: Range requires lowerBound <= upperBound*.
+- **El acumulador multiplica igual que suma, pero arranca en 1.** `var suma = 0` para
+  sumar; `var suma = 1` para multiplicar (porque `0 * algo = 0` lo arruinaría todo).
+- **Declarar una lista vacía con su tipo:** `var resultado: [Int] = []`, y se llena con
+  `.append(x)` dentro del `if`. Mismo molde acumulador, pero la caja es una lista.
+- **La variable del `for` no puede llamarse igual que la caja.** `for suma in 1...n` crea
+  su PROPIA `suma` y tapa la de arriba. La caja y el contador son dos cosas: `suma` e `i`.
+
+### Errores propios detectados (patrones, no despistes)
+
+1. **En el `return` ponía un dato en vez de la caja** — pasó en los retos 13, 16 y 17
+   (`return numero`, `return []`, `return [1,2,3,4,5,6]`, `return factorial`).
+   Regla: antes de dar por terminada una función, leer el `return` y preguntarse
+   *"¿esto es la caja que acabo de llenar?"*.
+2. **Colgarle un `else` a cualquier cosa** — 5 veces en una sesión, sobre un `for` y
+   sobre un `return`. Regla: si no puedo señalar con el dedo de qué `if` cuelga, no va.
+3. **Las llaves `{ }`** — siguen siendo el punto débil mecánico. Truco: al escribir `{`,
+   escribir su `}` en ese mismo momento (las dos vacías) y rellenar el medio después.
+   Salvavidas en Xcode: `⌘A` + `Ctrl+I` re-indenta y delata la llave mal puesta.
+
+> La lógica se acertó siempre. Ninguno de los fallos de esta tanda fue de razonamiento.
+
 ### Pendiente
-- Retos 1-10 resueltos (números Y texto, for Y while). Sumar dígitos (Reto 10) queda por escribir/ejecutar.
-- SwiftUI: proyecto `estudiosSwiftUI` creado, pero falta descargar el simulador de iOS (o conectar iPhone con cable) para ver el preview. Hacer en WiFi.
-- Siguientes ideas: contar palabras, FizzBuzz (ya visto), o entrar a SwiftUI cuando haya WiFi/cable.
+
+- **Lección 9 cerrada.** Siguiente paso: SwiftUI (`~/Desktop/estudiosSwiftUI`, ejercicios
+  1 y 2 hechos, el simulador ya está instalado y el Canvas funciona) o retos de nivel
+  LeetCode Medium.
+- `AI Learning/Repaso_Retorno.swift` sigue sin usar: son 6 ejercicios ya resueltos,
+  en hoja en blanco, para cuando pase un tiempo sin practicar.
 
 ---
 
