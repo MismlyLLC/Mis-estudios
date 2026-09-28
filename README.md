@@ -605,6 +605,46 @@ Los 17 retos corren de principio a fin sin errores ni crashes.
 - **Lección 9 cerrada.** Siguiente paso: SwiftUI (`~/Desktop/estudiosSwiftUI`, ejercicios
   1 y 2 hechos, el simulador ya está instalado y el Canvas funciona) o retos de nivel
   LeetCode Medium.
+
+---
+
+## Lección 10: SwiftUI (`~/Desktop/estudiosSwiftUI/estudiosSwiftUI/ContentView.swift`)
+
+Roadmap hacia la prueba técnica típica de iOS: *descargar una lista de una API → mostrarla →
+tocar una fila → pantalla de detalle*.
+
+| Ej. | Tema | Estado |
+|---|---|---|
+| 1 | Tarjeta de presentación (`VStack`, `Text`, `Image`, modificadores) | ✅ |
+| 2 | Contador (`@State`, `Button`) | ✅ |
+| 3 | Lista de hábitos (`List`, `ForEach`, `HStack`) | ✅ |
+| 4 | `struct Habito: Identifiable` con `UUID()` | ✅ |
+| 5 | `NavigationLink` a `DetalleView` (pasar datos entre pantallas) | ✅ |
+| 6 | Agregar hábitos (`TextField`, `$` binding, `append`, `if != ""`) | ✅ |
+| 7 | Leer JSON local (`Codable`, `Data`, `.utf8`, `JSONDecoder`, `try?`, `??`) | ✅ |
+| 8 | Descargar de internet (`async/await`, `URLSession`, `.task`, `.overlay` + `ContentUnavailableView` sin conexión) | ✅ |
+| 9 | **Hoja en blanco:** usuarios de `jsonplaceholder.typicode.com/users` (name + email) | ⏳ pieza 1 (struct) hecha; faltan la función y la vista |
+
+### Conceptos que ya explico con mis palabras
+
+- **`id` / `Identifiable` = el RUT** de cada fila. `id: \.self` es usar el nombre como RUT
+  (falla con duplicados); `UUID()` es un RUT único inventado por Swift.
+- **API** = el mesero entre mi app y el servidor; el plato que llega es **JSON**.
+- **`Data(json.utf8)`** pasa el texto de letras a números para que el traductor lo lea.
+- **Codable** = traductor JSON → struct. Los nombres de los campos tienen que ser iguales al
+  JSON; el nombre del struct lo invento yo.
+- **`Tarea` / `tareas` / `tarea`** = el molde / la lista / la ficha de esta vuelta.
+- **Una pantalla que descarga tiene 3 estados:** cargando, con datos, error. Una pantalla en
+  blanco sin explicación es mala experiencia.
+
+### Cambio de método (28 sep)
+
+Menos hoja en blanco y más **leer código, encontrar bugs y decidir arquitectura** (lo que hace
+un CTO que trabaja con IA), manteniendo lo justo de escritura para aprobar un live coding.
+Los proyectos siguientes apuntan a una mini-versión del **reto de 66 días de Mismly**.
+
+**Pendiente:** terminar el Ej. 9 → MVVM (ahí se entiende `struct` vs `class`) → mini-app de
+66 días (conecta con el Reto 18 «racha más larga» de `AI Learning/Leccion10_Retos.swift`).
 - `AI Learning/Repaso_Retorno.swift` sigue sin usar: son 6 ejercicios ya resueltos,
   en hoja en blanco, para cuando pase un tiempo sin practicar.
 
