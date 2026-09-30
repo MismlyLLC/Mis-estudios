@@ -623,7 +623,19 @@ tocar una fila → pantalla de detalle*.
 | 6 | Agregar hábitos (`TextField`, `$` binding, `append`, `if != ""`) | ✅ |
 | 7 | Leer JSON local (`Codable`, `Data`, `.utf8`, `JSONDecoder`, `try?`, `??`) | ✅ |
 | 8 | Descargar de internet (`async/await`, `URLSession`, `.task`, `.overlay` + `ContentUnavailableView` sin conexión) | ✅ |
-| 9 | **Hoja en blanco:** usuarios de `jsonplaceholder.typicode.com/users` (name + email) | ⏳ pieza 1 (struct) hecha; faltan la función y la vista |
+| 9 | **Hoja en blanco:** usuarios de `jsonplaceholder.typicode.com/users` (name + email) | ✅ |
+| 10 | **MVVM:** `@Observable class UsuariosViewModel` + vista que lo observa | ✅ (falta que haga clic: repasar practicando) |
+| 11 | **Mini-Mismly:** grilla de 66 días (`LazyVGrid`, `Array(repeating:count:)`, `if hoy < 66`) | ✅ |
+| 12 | Mejor racha 🔥 con mi función del Reto 18 + botón "❌ Fallé hoy" | ✅ |
+| 13 | Días fallados en rojo: `fallados` + `colorDelDia(_:) -> Color` | ✅ |
+| 14 | Guardar en disco: `@AppStorage("hoy")` | ⏳ falta guardar las listas `dias` y `fallados` |
+
+Copia del código: [`SwiftUI/ContentView.swift`](SwiftUI/ContentView.swift) (el proyecto de Xcode vive en
+`~/Desktop/estudiosSwiftUI`).
+
+**Reto 18 — racha más larga** ✅ 4/4 en `AI Learning/Leccion10_Retos.swift`. Molde de 2 cajas:
+`rachaActual` (sube y se reinicia con cada ❌) y `mejorRacha` (guarda el récord). En el `return`
+va `mejorRacha`: si el último día falla, `rachaActual` queda en 0.
 
 ### Conceptos que ya explico con mis palabras
 
@@ -643,8 +655,18 @@ Menos hoja en blanco y más **leer código, encontrar bugs y decidir arquitectur
 un CTO que trabaja con IA), manteniendo lo justo de escritura para aprobar un live coding.
 Los proyectos siguientes apuntan a una mini-versión del **reto de 66 días de Mismly**.
 
-**Pendiente:** terminar el Ej. 9 → MVVM (ahí se entiende `struct` vs `class`) → mini-app de
-66 días (conecta con el Reto 18 «racha más larga» de `AI Learning/Leccion10_Retos.swift`).
+### Lo que más me costó (y el truco)
+
+1. **Lo mecánico, no la lógica:** llaves `{ }`, código fuera del `if`/`for`, dos instrucciones
+   en una línea, typos. → Cerrar la `}` al abrir la `{`; `⌘A` + `Ctrl+I`; leer la línea del error
+   letra por letra.
+2. **Cosas que se parecen:** ficha de datos (`struct` con `let`) vs pantalla (vista con `body`);
+   `Tarea` / `tareas` / `tarea`. → Los huecos de un molde siempre salen de algo que ya escribí.
+3. **Conceptos abstractos:** `async`/`await` (delivery de pizza 🍕: async = tarda, await = espera),
+   `struct` vs `class` (fotocopia vs Google Doc), MVVM (comedor vs cocina).
+
+**Pendiente:** calentamiento escribiendo la grilla desde cero → guardar `dias`/`fallados` en disco
+(Codable) → pasar la mini-Mismly a MVVM (practicando, para que haga clic `struct` vs `class`).
 - `AI Learning/Repaso_Retorno.swift` sigue sin usar: son 6 ejercicios ya resueltos,
   en hoja en blanco, para cuando pase un tiempo sin practicar.
 
