@@ -1248,6 +1248,59 @@ Button("❌ Fallé hoy") {
 
 
 // =========================================================
+// 🔥 CALENTAMIENTO — la grilla desde CERO (sin mirar arriba)
+// =========================================================
+//
+//   Meta: 10 círculos grises en una grilla de 5 columnas.
+//
+//       ⚪ ⚪ ⚪ ⚪ ⚪
+//       ⚪ ⚪ ⚪ ⚪ ⚪
+//
+//   PASO 1 — la lista de columnas (una línea `let`)
+//   PASO 2 — en el body: LazyVGrid + ForEach + Circle
+//
+//   Si te trabas más de 2 min, mira el Ej. 11 SOLO esa línea.
+
+struct CalentamientoView: View {
+
+    // PASO 1 👇 — las columnas
+    let columnas = Array(repeating: GridItem(.flexible()), count: 5)
+    @State private var marcados = Array(repeating: false, count: 10)
+    func contarMarcados() -> Int {
+        var caja = 0
+        for m in marcados {
+            if m {
+                caja = caja + 1
+            }
+        }
+        return caja
+    }
+
+    var body: some View {
+
+        // PASO 2 👇 — borra el Text y escribe la grilla
+        LazyVGrid(columns: columnas) {
+            ForEach(0..<10, id: \.self) { i in
+                Circle()
+                    .fill(marcados[i] ? .orange : .gray)
+                    .frame(width: 30, height: 30)
+                    .onTapGesture {
+                        marcados[i].toggle()
+                    }
+            }
+            
+        }
+
+    }
+}
+
+#Preview("Calentamiento") {
+    CalentamientoView()
+}
+
+
+
+// =========================================================
 // PANTALLA PRINCIPAL — no la toques
 // =========================================================
 // TabView crea las pestañas de abajo para verlos todos a la vez.
@@ -1290,6 +1343,9 @@ struct ContentView: View {
 
             Ejercicio11View()
                 .tabItem { Label("66 días", systemImage: "flame.fill") }
+
+            CalentamientoView()
+                .tabItem { Label("Calentamiento", systemImage: "figure.run") }
         }
     }
 }

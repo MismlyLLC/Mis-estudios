@@ -629,6 +629,7 @@ tocar una fila → pantalla de detalle*.
 | 12 | Mejor racha 🔥 con mi función del Reto 18 + botón "❌ Fallé hoy" | ✅ |
 | 13 | Días fallados en rojo: `fallados` + `colorDelDia(_:) -> Color` | ✅ |
 | 14 | Guardar en disco: `@AppStorage("hoy")` | ⏳ falta guardar las listas `dias` y `fallados` |
+| 🔥 | **Calentamiento (1 oct):** grilla desde cero (`GridItem` repetido = caja de huevos 🥚), tocar círculos (`.onTapGesture` + `.toggle()` = interruptor 💡), `contarMarcados()` con el molde del acumulador | ✅ |
 
 Copia del código: [`SwiftUI/ContentView.swift`](SwiftUI/ContentView.swift) (el proyecto de Xcode vive en
 `~/Desktop/estudiosSwiftUI`).
