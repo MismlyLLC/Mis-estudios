@@ -1221,8 +1221,7 @@ struct Ejercicio11View: View {
                 // PASO 1 👇 — dos líneas
                 if hoy < 66 {
                     dias[hoy] = true
-                    hoy = hoy + 1
-                }
+                    hoy += 1                }
 
             }
             .font(.title2)
@@ -1233,7 +1232,7 @@ struct Ejercicio11View: View {
 Button("❌ Fallé hoy") {
                 if hoy < 66 {
                     fallados[hoy] = true
-                    hoy = hoy + 1
+                    hoy += 1
                 }
             }
         }
@@ -1243,6 +1242,152 @@ Button("❌ Fallé hoy") {
 
 #Preview("Ejercicio 11") {
     Ejercicio11View()
+}
+
+
+
+// =========================================================
+// EJERCICIO 15 — Mismly con MVVM 🧠 (el cerebro de tu app)
+// =========================================================
+//
+//   La pantalla de "66 días" (Ej. 11) hace TODO: guarda los días,
+//   decide colores, marca, falla... Ahora la partimos en dos:
+//
+//     🧠 RetoViewModel  → el CEREBRO: guarda los datos y decide
+//     📱 Ejercicio15View → la PANTALLA: solo dibuja y avisa
+//                          "me tocaron" (vm.marcarHoy())
+//
+//   🏠 Tu analogía: el cerebro son los ladrillos y la pantalla es
+//      la pintura. La pintura no carga ladrillos.
+//
+//   La pantalla YA ESTÁ escrita (abajo) y llama al cerebro.
+//   Tú armas el cerebro, MOVIENDO cosas que ya escribiste en el
+//   Ej. 11. Nada nuevo: solo cambian de lugar.
+//
+//   PASO 1 — Los 3 datos: copia del Ej. 11 las líneas de
+//            `dias`, `fallados` y `hoy`... pero SIN @State ni
+//            private (en una class con @Observable no hacen falta).
+//
+//   PASO 2 — `marcarHoy()`: lo que hacía el botón "✅ Marcar hoy"
+//            (el if hoy < 66 con sus 2 líneas).
+//
+//   PASO 3 — `fallarHoy()`: lo que hacía el botón "❌ Fallé hoy".
+
+@Observable
+class RetoViewModel {
+    
+    // PASO 1 👇 — los 3 datos (var, sin @State)
+    
+    var dias = UserDefaults.standard.array(forKey: "dias") as?
+    [Bool] ?? Array(repeating: false, count: 66) {
+        didSet {
+            UserDefaults.standard.set(dias, forKey: "dias")
+        }
+    }
+    var fallados = UserDefaults.standard.array(forKey: "fallados") as? [Bool] ?? Array(repeating: false, count: 66) {
+        didSet { UserDefaults.standard.set(fallados, forKey: "fallados") }
+    }
+    var hoy = UserDefaults.standard.integer(forKey: "hoy") {
+        didSet { UserDefaults.standard.set(hoy, forKey: "hoy") }
+    }
+
+    // PASO 2 👇
+    
+    func marcarHoy() {
+        if hoy < 66 {
+            dias[hoy] = true
+            hoy += 1
+        }
+
+    }
+
+    // PASO 3 👇
+    func fallarHoy() {
+        if hoy < 66 {
+            fallados[hoy] = true
+            hoy += 1
+        }
+        
+    }
+
+    // =====================================================
+    // EJERCICIO 16 — Hoja en blanco: ¿cuántos días cumplí? ✅
+    // =====================================================
+    //   Escribe DESDE CERO la función `diasCumplidos() -> Int`
+    //   que cuente cuántos `true` hay en `dias`.
+    //
+    //   Ejemplo: dias = [true, true, false, true, false...] → 3
+    //
+    //   Es tu molde de siempre. Antes de escribir, recuerda las
+    //   3 trampas de la última vez:
+    //     ⚠️ la caja es `var`, no `let`
+    //     ⚠️ el `for` usa OTRO nombre, no el de la caja
+    //     ⚠️ el `return` va AL FINAL, fuera del `for`
+    //
+    // PASO 1 👇 — escribe aquí la función completa
+    func diasCumplidos() -> Int {
+        var caja = 0
+        for i in dias {
+            if i == true {
+                caja += 1 }
+        }
+        return caja
+    }
+    func diasFallados() -> Int {
+        var caja = 0
+        for i in caja {
+            if i == true {
+                caja += 1
+            }
+    }
+        return caja
+    }
+    // 🎨 Ya movido por mí (es tu colorDelDia del Ej. 13)
+    func colorDelDia(_ i: Int) -> Color {
+        if dias[i] { return .orange }
+        if fallados[i] { return .red }
+        return .gray.opacity(0.25)
+    }
+}
+
+// 📱 LA PANTALLA — ya está lista, solo dibuja y le avisa al cerebro
+struct Ejercicio15View: View {
+
+    @State private var vm = RetoViewModel()
+    let columnas = Array(repeating: GridItem(.flexible()), count: 11)
+
+    var body: some View {
+        VStack(spacing: 24) {
+            Text("Día \(vm.hoy) de 66")
+                .font(.largeTitle)
+                .bold()
+
+            Text("🔥 Mejor racha: \(rachaMasLarga(dias: vm.dias))")
+
+            // EJ. 16 · PASO 2 👇 — muestra "✅ Cumplidos: X de 66"
+            Text("Cumplidos: \(vm.diasCumplidos()) de 66")
+
+            LazyVGrid(columns: columnas, spacing: 10) {
+                ForEach(0..<66, id: \.self) { i in
+                    Circle()
+                        .fill(vm.colorDelDia(i))
+                        .frame(width: 22, height: 22)
+                }
+            }
+
+            Button("✅ Marcar hoy") { vm.marcarHoy() }
+                .font(.title2)
+                .buttonStyle(.borderedProminent)
+                .tint(.orange)
+
+            Button("❌ Fallé hoy") { vm.fallarHoy() }
+        }
+        .padding()
+    }
+}
+
+#Preview("Ejercicio 15") {
+    Ejercicio15View()
 }
 
 
@@ -1270,15 +1415,18 @@ struct CalentamientoView: View {
         var caja = 0
         for m in marcados {
             if m {
-                caja = caja + 1
+                caja += 1
             }
         }
         return caja
     }
 
     var body: some View {
-
+        
         // PASO 2 👇 — borra el Text y escribe la grilla
+        VStack(spacing: 20) {
+            Text("Marcados: \(contarMarcados())")
+                .font(.title)
         LazyVGrid(columns: columnas) {
             ForEach(0..<10, id: \.self) { i in
                 Circle()
@@ -1290,6 +1438,7 @@ struct CalentamientoView: View {
             }
             
         }
+    }
 
     }
 }
@@ -1346,6 +1495,9 @@ struct ContentView: View {
 
             CalentamientoView()
                 .tabItem { Label("Calentamiento", systemImage: "figure.run") }
+
+            Ejercicio15View()
+                .tabItem { Label("Mismly MVVM", systemImage: "brain.head.profile") }
         }
     }
 }
