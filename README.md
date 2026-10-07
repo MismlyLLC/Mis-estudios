@@ -2,6 +2,8 @@
 
 > 📄 **Guía de estudio para imprimir:** [`GUIA_ENTREVISTA.pdf`](GUIA_ENTREVISTA.pdf) (versión web: [`GUIA_ENTREVISTA.md`](GUIA_ENTREVISTA.md)).
 > 102 preguntas de entrevista con respuesta, 12 bugs para encontrar y 12 ejercicios de memoria con soluciones, de la Lección 1 a la 10.
+>
+> 🇺🇸 **English version:** [`INTERVIEW_GUIDE.pdf`](INTERVIEW_GUIDE.pdf) ([`INTERVIEW_GUIDE.md`](INTERVIEW_GUIDE.md)). Mismos números de pregunta, más frases útiles para pensar en voz alta y una tabla de vocabulario técnico.
 
 ---
 
