@@ -1,5 +1,8 @@
 # Mis Estudios — Swift para Entrevista iOS
 
+> 📄 **Guía de estudio para imprimir:** [`GUIA_ENTREVISTA.pdf`](GUIA_ENTREVISTA.pdf) (versión web: [`GUIA_ENTREVISTA.md`](GUIA_ENTREVISTA.md)).
+> 102 preguntas de entrevista con respuesta, 12 bugs para encontrar y 12 ejercicios de memoria con soluciones, de la Lección 1 a la 10.
+
 ---
 
 ## Cómo retomar el estudio en una nueva sesión
@@ -628,11 +631,18 @@ tocar una fila → pantalla de detalle*.
 | 11 | **Mini-Mismly:** grilla de 66 días (`LazyVGrid`, `Array(repeating:count:)`, `if hoy < 66`) | ✅ |
 | 12 | Mejor racha 🔥 con mi función del Reto 18 + botón "❌ Fallé hoy" | ✅ |
 | 13 | Días fallados en rojo: `fallados` + `colorDelDia(_:) -> Color` | ✅ |
-| 14 | Guardar en disco: `@AppStorage("hoy")` | ⏳ falta guardar las listas `dias` y `fallados` |
+| 14 | Guardar en disco: `@AppStorage("hoy")` | ✅ |
+| 15 | **Mismly con MVVM:** `@Observable class RetoViewModel` + persistencia con `UserDefaults` y `didSet` (timbre 🔔) | ✅ |
+| 16 | **Hoja en blanco:** `diasCumplidos() -> Int` en el ViewModel | ✅ |
+| 17 | **`enum EstadoDia`** (pendiente/cumplido/fallado/descanso) + `switch` en `colorDelDia` + "switch must be exhaustive" + botón 😴 Descanso + guardar `[EstadoDia]` con `Codable` + `JSONEncoder` en `didSet` + `init()` que lee la libreta | ✅ |
 | 🔥 | **Calentamiento (1 oct):** grilla desde cero (`GridItem` repetido = caja de huevos 🥚), tocar círculos (`.onTapGesture` + `.toggle()` = interruptor 💡), `contarMarcados()` con el molde del acumulador | ✅ |
 
 Copia del código: [`SwiftUI/ContentView.swift`](SwiftUI/ContentView.swift) (el proyecto de Xcode vive en
 `~/Desktop/estudiosSwiftUI`).
+
+**Reto 19 — La etiqueta 🏷️ (`_` en funciones)** en `AI Learning/Leccion10_Retos.swift`: paso 1 y 2 ✅
+(`triple(_ numero: Int)` → se usa `triple(4)` en vez de `triple(numero: 4)`). ⏳ Falta el paso 3:
+`contarMayores(_ lista: [Int], limite: Int)`.
 
 **Reto 18 — racha más larga** ✅ 4/4 en `AI Learning/Leccion10_Retos.swift`. Molde de 2 cajas:
 `rachaActual` (sube y se reinicia con cada ❌) y `mejorRacha` (guarda el récord). En el `return`

@@ -1272,6 +1272,13 @@ Button("❌ Fallé hoy") {
 //            (el if hoy < 66 con sus 2 líneas).
 //
 //   PASO 3 — `fallarHoy()`: lo que hacía el botón "❌ Fallé hoy".
+enum EstadoDia : Codable {
+    case pendiente
+    case cumplido
+    case fallado
+    case descanso
+}
+
 
 @Observable
 class RetoViewModel {
@@ -1290,12 +1297,23 @@ class RetoViewModel {
     var hoy = UserDefaults.standard.integer(forKey: "hoy") {
         didSet { UserDefaults.standard.set(hoy, forKey: "hoy") }
     }
-
+    var estados: [EstadoDia] = Array(repeating: .pendiente, count: 66) {
+        didSet {
+            let datos = try? JSONEncoder().encode(estados)
+            UserDefaults.standard.set(datos, forKey: "estados")
+        }
+    }
     // PASO 2 👇
+    init() {
+        if let datos = UserDefaults.standard.data(forKey: "estados"),
+           let guardados = try?
+            JSONDecoder().decode([EstadoDia].self, from: datos) { estados = guardados}
+    }
     
     func marcarHoy() {
         if hoy < 66 {
             dias[hoy] = true
+            estados[hoy] = .cumplido
             hoy += 1
         }
 
@@ -1305,11 +1323,21 @@ class RetoViewModel {
     func fallarHoy() {
         if hoy < 66 {
             fallados[hoy] = true
+            estados[hoy] = .fallado
             hoy += 1
         }
         
     }
 
+    func descansarHoy() {
+        if hoy < 66 {
+        estados[hoy] = .descanso
+        hoy += 1
+        }
+        
+        }
+    
+    
     // =====================================================
     // EJERCICIO 16 — Hoja en blanco: ¿cuántos días cumplí? ✅
     // =====================================================
@@ -1335,7 +1363,7 @@ class RetoViewModel {
     }
     func diasFallados() -> Int {
         var caja = 0
-        for i in caja {
+        for i in fallados{
             if i == true {
                 caja += 1
             }
@@ -1344,9 +1372,12 @@ class RetoViewModel {
     }
     // 🎨 Ya movido por mí (es tu colorDelDia del Ej. 13)
     func colorDelDia(_ i: Int) -> Color {
-        if dias[i] { return .orange }
-        if fallados[i] { return .red }
-        return .gray.opacity(0.25)
+        switch estados[i] {
+        case .pendiente: return .gray.opacity(0.25)
+        case .cumplido: return .orange
+        case .fallado: return .red
+        case .descanso: return .blue
+        }
     }
 }
 
@@ -1379,9 +1410,10 @@ struct Ejercicio15View: View {
                 .font(.title2)
                 .buttonStyle(.borderedProminent)
                 .tint(.orange)
-
-            Button("❌ Fallé hoy") { vm.fallarHoy() }
-        }
+            Button("Falle Hoy") { vm.fallarHoy()}
+            Button("Descanso") { vm.descansarHoy ()
+            }
+            }
         .padding()
     }
 }

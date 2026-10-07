@@ -86,3 +86,65 @@ print(rachaMasLarga(dias: [true, true, false, true, true, true, false]))  // deb
 print(rachaMasLarga(dias: [true, false, true]))                           // debería imprimir: 1
 print(rachaMasLarga(dias: [false, false]))                                // debería imprimir: 0
 print(rachaMasLarga(dias: [true, true, true, true]))                      // debería imprimir: 4
+
+
+// =========================================================
+// RETO 19 — La etiqueta 🏷️ (el `_` en las funciones)
+// =========================================================
+// Una función tiene 2 momentos:
+//   🏭 CREARLA  → func nombre(etiqueta: Tipo)
+//   🔘 USARLA   → nombre(etiqueta: dato)
+//
+// La palabra que pones al CREARLA es la que Swift te pide al USARLA.
+// Si pones `_` delante, Swift NO te la pide.
+
+
+// ---------------------------------------------------------
+// PASO 1 — Solo LEE (ya está hecho) 👀
+// ---------------------------------------------------------
+// Sin `_`: al usarla hay que escribir "numero:"
+
+func doble(numero: Int) -> Int {
+    return numero * 2
+}
+
+print(doble(numero: 4))   // debería imprimir: 8
+
+
+// ---------------------------------------------------------
+// PASO 2 — Arregla el error 🐛
+// ---------------------------------------------------------
+// La prueba de abajo usa triple(4) SIN la palabra "numero:".
+// Swift se va a quejar. Arréglalo cambiando SOLO la línea del `func`
+// (no toques el print).
+
+func triple(_ numero: Int) -> Int {
+    return numero * 3
+}
+
+print(triple(4))          // debería imprimir: 12
+
+
+// ---------------------------------------------------------
+// PASO 3 — LeetCode: dos huecos, uno con `_` y otro con etiqueta
+// ---------------------------------------------------------
+// Cuenta cuántos números de la lista son MAYORES que el límite.
+//
+// Ejemplo: contarMayores([5, 12, 3, 20], limite: 10) → 2   (12 y 20)
+//
+// Fíjate en la línea del func:
+//   `_ lista`   → al usarla NO escribes "lista:"
+//   `limite`    → al usarla SÍ escribes "limite:"
+//
+// Es tu molde de siempre: var → for → if (+= 1) → return al final.
+
+func contarMayores(_ lista: [Int], limite: Int) -> Int {
+
+    // ESCRIBE AQUÍ 👇 (borra el `return 0` cuando escribas el tuyo)
+
+    return 0
+}
+
+print(contarMayores([5, 12, 3, 20], limite: 10))   // debería imprimir: 2
+print(contarMayores([1, 2, 3], limite: 5))         // debería imprimir: 0
+print(contarMayores([100, 50, 7], limite: 6))      // debería imprimir: 3
