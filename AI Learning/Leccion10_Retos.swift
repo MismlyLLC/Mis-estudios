@@ -140,11 +140,62 @@ print(triple(4))          // debería imprimir: 12
 
 func contarMayores(_ lista: [Int], limite: Int) -> Int {
 
+    var contador = 0
     // ESCRIBE AQUÍ 👇 (borra el `return 0` cuando escribas el tuyo)
-
-    return 0
+    for numero in lista {
+        if numero > limite {
+            contador += 1
+        }
+    }
+    return contador
 }
 
 print(contarMayores([5, 12, 3, 20], limite: 10))   // debería imprimir: 2
 print(contarMayores([1, 2, 3], limite: 5))         // debería imprimir: 0
 print(contarMayores([100, 50, 7], limite: 6))      // debería imprimir: 3
+
+
+// =========================================================
+// RETO 20 — Tu primer closure (código guardado en una caja)
+// =========================================================
+// Un closure es como un control remoto 📺: lo guardas en una caja,
+// y el código de adentro NO se ejecuta hasta que aprietas el botón ().
+//
+// Ejemplo:
+//   let saludar = { print("Hola") }   ← se guarda, todavía no imprime nada
+//   saludar()                         ← ahora sí imprime "Hola"
+//
+// TU TURNO:
+// 1) Crea una caja `let celebrar` con un closure que imprima "🔥 Racha!"
+// 2) Llámalo DOS veces con celebrar()
+
+
+
+
+// ESCRIBE AQUÍ 👇
+
+
+
+let saludar = { print("Hola")}
+saludar()
+let celebrar = {print ("🔥 Racha!")}
+celebrar()
+celebrar()
+
+
+
+// =========================================================
+// RETO 21 — Closure que RECIBE un dato
+// =========================================================
+// Antes del `in` va lo que ENTRA. Después del `in`, lo que hace.
+//
+// Ejemplo:
+//   let saludarA = { (nombre: String) in print("Hola \(nombre)") }
+//   saludarA("Nicolas")    → imprime "Hola Nicolas"
+//
+// TU TURNO: crea `let mostrarRacha` que reciba (dias: Int)
+// e imprima "🔥 Racha de \(dias) días". Llámalo con 5.
+
+// ESCRIBE AQUÍ 👇
+let mostrarRacha = {(dias: Int) in print("Racha de \(dias) días")}
+mostrarRacha(66)

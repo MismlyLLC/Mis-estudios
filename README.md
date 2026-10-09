@@ -643,8 +643,14 @@ Copia del código: [`SwiftUI/ContentView.swift`](SwiftUI/ContentView.swift) (el 
 `~/Desktop/estudiosSwiftUI`).
 
 **Reto 19 — La etiqueta 🏷️ (`_` en funciones)** en `AI Learning/Leccion10_Retos.swift`: paso 1 y 2 ✅
-(`triple(_ numero: Int)` → se usa `triple(4)` en vez de `triple(numero: 4)`). ⏳ Falta el paso 3:
-`contarMayores(_ lista: [Int], limite: Int)`.
+(`triple(_ numero: Int)` → se usa `triple(4)` en vez de `triple(numero: 4)`). Paso 3 ✅
+`contarMayores(_ lista: [Int], limite: Int)` (molde var → for → if → `return contador`).
+
+**Reto 20 — Primer closure** ✅ `let celebrar = { print("🔥 Racha!") }` + `celebrar()`: el código se
+guarda y se ejecuta DESPUÉS, cuando lo llamas (igual que la acción de un `Button`).
+
+**Reto 21 — Closure que recibe un dato** ✅ `{ (dias: Int) in print(...) }`: antes del `in` lo que
+entra, después lo que hace. `mostrarRacha(66)` imprime UNA vez (el 66 entra a `dias`, no es un for).
 
 **Reto 18 — racha más larga** ✅ 4/4 en `AI Learning/Leccion10_Retos.swift`. Molde de 2 cajas:
 `rachaActual` (sube y se reinicia con cada ❌) y `mejorRacha` (guarda el récord). En el `return`
