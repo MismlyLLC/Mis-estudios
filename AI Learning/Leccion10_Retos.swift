@@ -219,7 +219,10 @@ mostrarRacha(66)
 let rachas = [4, 12, 7, 30, 66, 2]
 
 // ESCRIBE AQUÍ 👇
-let largas = rachas.filter { $0 > 10}
-print(largas)
+let largas = rachas.filter {$0 > 10}
+print(rachas.filter { $0 > 10 }.count)
+print(rachas.map { $0 * 10})
+
+
 
 
