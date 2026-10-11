@@ -637,6 +637,7 @@ tocar una fila → pantalla de detalle*.
 | 15 | **Mismly con MVVM:** `@Observable class RetoViewModel` + persistencia con `UserDefaults` y `didSet` (timbre 🔔) | ✅ |
 | 16 | **Hoja en blanco:** `diasCumplidos() -> Int` en el ViewModel | ✅ |
 | 17 | **`enum EstadoDia`** (pendiente/cumplido/fallado/descanso) + `switch` en `colorDelDia` + "switch must be exhaustive" + botón 😴 Descanso + guardar `[EstadoDia]` con `Codable` + `JSONEncoder` en `didSet` + `init()` que lee la libreta | ✅ |
+| 18 | **Pulido + `filter` (10 oct):** botones de colores en `HStack` (modificadores DESPUÉS de la `}`), operador ternario `cond ? A : B` en `.foregroundStyle`, `diasCumplidos`/`diasFallados` de 6 líneas a 1 con `filter { $0 == true }.count`, `diasDescanso()` sobre `estados` (`$0 == .descanso`) + contador 😴 | ✅ |
 | 🔥 | **Calentamiento (1 oct):** grilla desde cero (`GridItem` repetido = caja de huevos 🥚), tocar círculos (`.onTapGesture` + `.toggle()` = interruptor 💡), `contarMarcados()` con el molde del acumulador | ✅ |
 
 Copia del código: [`SwiftUI/ContentView.swift`](SwiftUI/ContentView.swift) (el proyecto de Xcode vive en
@@ -651,6 +652,10 @@ guarda y se ejecuta DESPUÉS, cuando lo llamas (igual que la acción de un `Butt
 
 **Reto 21 — Closure que recibe un dato** ✅ `{ (dias: Int) in print(...) }`: antes del `in` lo que
 entra, después lo que hace. `mostrarRacha(66)` imprime UNA vez (el 66 entra a `dias`, no es un for).
+
+**Reto 22 — `filter`** ✅ `rachas.filter { $0 > 10 }` → `[12, 30, 66]`. Lo de las llaves `{ $0 > 10 }` ES un
+closure: `filter` lo ejecuta YA, una vez por elemento (el de `Button` se ejecuta DESPUÉS, al tocarlo).
+`.count` = cuántos quedaron. Es el molde del acumulador en una línea.
 
 **Reto 18 — racha más larga** ✅ 4/4 en `AI Learning/Leccion10_Retos.swift`. Molde de 2 cajas:
 `rachaActual` (sube y se reinicia con cada ❌) y `mejorRacha` (guarda el récord). En el `return`

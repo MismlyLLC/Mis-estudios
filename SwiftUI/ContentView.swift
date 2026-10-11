@@ -55,19 +55,19 @@ import SwiftUI
 struct EjemploView: View {
     var body: some View {
         VStack(spacing: 12) {
-
+            
             Image(systemName: "flame.fill")
                 .font(.system(size: 80))
                 .foregroundStyle(.orange)
-
+            
             Text("Hello, I'm Jhon Doe")
                 .font(.largeTitle)
                 .bold()
-
+            
             Text("Estoy aprendiendo Swift")
                 .font(.body)
                 .foregroundStyle(.secondary)
-
+            
         }
         .padding()
     }
@@ -103,7 +103,7 @@ struct EjemploView: View {
 struct Ejercicio1View: View {
     var body: some View {
         VStack(spacing: 12) {
-
+            
             // ESCRIBE AQUÍ 👇 — borra este Text y arma tu tarjeta
             Image(systemName:"graduationcap.fill")
                 .font(.system(size: 60))
@@ -152,36 +152,36 @@ struct Ejercicio1View: View {
 //   3. Agregar TÚ un segundo botón "Reiniciar" que lo vuelva a 0
 
 struct Ejercicio2View: View {
-
+    
     @State private var contador = 0
-
+    
     var body: some View {
         VStack(spacing: 20) {
-
+            
             Text("Contador")
                 .font(.headline)
                 .foregroundStyle(.secondary)
-
+            
             // TAREA 1 👇 — haz que muestre el contador de verdad
             Text("\(contador)")
                 .font(.system(size: 70))
                 .bold()
-
+            
             // TAREA 2 👇 — completa la acción del botón
             Button("Sumar") {
                 contador = contador + 1
             }
             .font(.title2)
             .buttonStyle(.borderedProminent)
-
+            
             // TAREA 3 👇 — escribe aquí abajo el botón "Reiniciar" completo
-
+            
             Button("Reiniciar") {
                 contador = 0
             }
             .font(.title2)
             .buttonStyle(.bordered)
-
+            
         }
         .padding()
     }
@@ -257,13 +257,13 @@ struct Ejercicio2View: View {
 // 💡 Haz el PASO 1 primero y mira el Canvas. Solo después el 2.
 
 struct Ejercicio3View: View {
-
+    
     let habitos = ["Leer 10 páginas",
                    "Estudiar Swift",
                    "Caminar 30 min",
                    "Beber agua",
                    "Dormir 8 horas"]
-
+    
     var body: some View {
         NavigationStack {
             List {
@@ -278,9 +278,9 @@ struct Ejercicio3View: View {
                 }
             }
             .navigationTitle("Mis hábitos")
-            }
         }
     }
+}
 
 
 // =========================================================
@@ -364,7 +364,7 @@ struct Habito: Identifiable {
 }
 
 struct Ejercicio4View: View {
-
+    
     let habitos = [
         Habito(nombre: "Leer 10 páginas", icono: "book.fill",     racha: 12),
         Habito(nombre: "Estudiar Swift",  icono: "laptopcomputer", racha: 30),
@@ -372,7 +372,7 @@ struct Ejercicio4View: View {
         Habito(nombre: "Beber agua",      icono: "drop.fill",      racha: 21),
         Habito(nombre: "Dormir 8 horas",  icono: "bed.double.fill", racha: 3)
     ]
-
+    
     var body: some View {
         NavigationStack {
             List {
@@ -453,12 +453,12 @@ struct Ejercicio4View: View {
 //    que aparece arriba del Canvas.
 
 struct DetalleView: View {
-
+    
     let habito: Habito
-
+    
     var body: some View {
         VStack(spacing: 16) {
-
+            
             // PASO 1 👇 — ícono grande, nombre y racha
             Image(systemName: habito.icono)
                 .font(.system(size: 80))
@@ -475,7 +475,7 @@ struct DetalleView: View {
 }
 
 struct Ejercicio5View: View {
-
+    
     let habitos = [
         Habito(nombre: "Leer 10 páginas", icono: "book.fill",      racha: 12),
         Habito(nombre: "Estudiar Swift",  icono: "laptopcomputer",  racha: 30),
@@ -483,13 +483,13 @@ struct Ejercicio5View: View {
         Habito(nombre: "Beber agua",      icono: "drop.fill",       racha: 21),
         Habito(nombre: "Dormir 8 horas",  icono: "bed.double.fill", racha: 3)
     ]
-
+    
     var body: some View {
         NavigationStack {
             List {
                 ForEach(habitos) { habito in
                     NavigationLink {
-
+                        
                         DetalleView(habito: habito)
                     } label: {
                         HStack {
@@ -576,16 +576,16 @@ struct Ejercicio5View: View {
 //    la pestaña "Ejercicio 6" que aparece ARRIBA del Canvas.
 
 struct Ejercicio6View: View {
-
+    
     @State private var habitos = ["Leer 10 páginas", "Estudiar Swift"]
     @State private var nuevoHabito = ""
     
     var body: some View {
         NavigationStack {
             VStack {
-
+                
                 HStack {
-
+                    
                     // PASO 1 👇 — el TextField va aquí
                     TextField("Escribe un hábito", text: $nuevoHabito)
                         .textFieldStyle(.roundedBorder)
@@ -595,7 +595,7 @@ struct Ejercicio6View: View {
                             habitos.append(nuevoHabito)
                             nuevoHabito = ""
                         }
-
+                        
                     }
                     .buttonStyle(.borderedProminent)
                 }
@@ -708,9 +708,9 @@ func traducirJSON() -> [HabitoJSON] {
 }
 
 struct Ejercicio7View: View {
-
+    
     let habitos = traducirJSON()
-
+    
     var body: some View {
         NavigationStack {
             List {
@@ -843,7 +843,7 @@ func descargarTareas() async -> [Tarea] {
     do {
         // 1. Pedir el JSON a internet y ESPERAR (await) a que llegue
         let (datos, _) = try await URLSession.shared.data(from: url)
-
+        
         // 2. Traducirlo, igual que en el Ejercicio 7
         let tareas = try JSONDecoder().decode([Tarea].self, from: datos)
         return tareas
@@ -853,16 +853,16 @@ func descargarTareas() async -> [Tarea] {
 }
 
 struct Ejercicio8View: View {
-
+    
     @State private var tareas: [Tarea] = []   // empieza vacía
-
+    
     var body: some View {
         NavigationStack {
             List {
                 ForEach(tareas) { tarea in
-
+                    
                     // PASO 3 👇 — arma la fila aquí
-
+                    
                     HStack{
                         Text(tarea.title)
                     }
@@ -870,7 +870,7 @@ struct Ejercicio8View: View {
                 }
             }
             // PASO 2 👇 — pega aquí el .task { }
-
+            
             .navigationTitle("Desde internet")
             .task {
                 tareas = await descargarTareas()
@@ -977,9 +977,9 @@ struct Ejercicio9View: View {
             .navigationTitle("Usuarios")
             .task {
                 usuarios = await part2()
-                    }}
-            }
-        }
+            }}
+    }
+}
 
 #Preview("Ejercicio 9") {
     Ejercicio9View()
@@ -1039,9 +1039,9 @@ struct Ejercicio9View: View {
 // 🧠 EL CEREBRO (ViewModel)
 @Observable
 class UsuariosViewModel {
-
+    
     var usuarios: [Usuario] = []
-
+    
     func cargar() async {
         // PASO 1 👇 — una línea
         usuarios = await part2()
@@ -1050,9 +1050,9 @@ class UsuariosViewModel {
 
 // 📱 LA PANTALLA (View) — solo dibuja
 struct Ejercicio10View: View {
-
+    
     @State private var vm = UsuariosViewModel()   // aquí nace el cerebro
-
+    
     var body: some View {
         NavigationStack {
             List {
@@ -1070,7 +1070,7 @@ struct Ejercicio10View: View {
             .task {
                 // PASO 2b 👇 — pídele al cerebro que cargue
                 await vm.cargar()
-
+                
             }
         }
     }
@@ -1138,7 +1138,7 @@ struct Ejercicio10View: View {
 func rachaMasLarga(dias: [Bool]) -> Int {
     var rachaActual = 0
     var mejorRacha = 0
-
+    
     for dia in dias {
         if dia {
             rachaActual = rachaActual + 1
@@ -1149,15 +1149,15 @@ func rachaMasLarga(dias: [Bool]) -> Int {
             rachaActual = 0
         }
     }
-
+    
     return mejorRacha
 }
 
 struct Ejercicio11View: View {
-
+    
     @State private var dias = Array(repeating: false, count: 66)
     @AppStorage("hoy") private var hoy = 0
-
+    
     // =====================================================
     // EJERCICIO 13 — Días fallados en ROJO ❌
     // =====================================================
@@ -1181,9 +1181,9 @@ struct Ejercicio11View: View {
     //
     //   PASO 3 — En el Circle, cambia el .fill(...) largo por:
     //              .fill(colorDelDia(i))
-
+    
     @State private var fallados = Array(repeating: false, count: 66)
-
+    
     // PASO 2 👇 — la máquina de colores
     func colorDelDia(_ i: Int) -> Color {
         if dias[i] {
@@ -1194,20 +1194,20 @@ struct Ejercicio11View: View {
         }
         return .gray.opacity(0.25)   // pendiente (este ya está bien)
     }
-
+    
     let columnas = Array(repeating: GridItem(.flexible()), count: 11)
-
+    
     var body: some View {
         VStack(spacing: 24) {
-
+            
             Text("Día \(hoy) de 66")
                 .font(.largeTitle)
                 .bold()
-
+            
             // EJ. 12 · PASO 1 👇 — el Text con la mejor racha
             let racha = rachaMasLarga(dias:dias)
             Text("🔥 Mejor racha: \(racha)")
-
+            
             LazyVGrid(columns: columnas, spacing: 10) {
                 ForEach(0..<66, id: \.self) { i in
                     Circle()
@@ -1215,21 +1215,21 @@ struct Ejercicio11View: View {
                         .frame(width: 22, height: 22)
                 }
             }
-
+            
             Button("✅ Marcar hoy") {
-
+                
                 // PASO 1 👇 — dos líneas
                 if hoy < 66 {
                     dias[hoy] = true
                     hoy += 1                }
-
+                
             }
             .font(.title2)
             .buttonStyle(.borderedProminent)
             .tint(.orange)
-
+            
             // EJ. 12 · PASO 2 👇 — el botón "❌ Fallé hoy"
-Button("❌ Fallé hoy") {
+            Button("❌ Fallé hoy") {
                 if hoy < 66 {
                     fallados[hoy] = true
                     hoy += 1
@@ -1316,9 +1316,9 @@ class RetoViewModel {
             estados[hoy] = .cumplido
             hoy += 1
         }
-
+        
     }
-
+    
     // PASO 3 👇
     func fallarHoy() {
         if hoy < 66 {
@@ -1328,14 +1328,14 @@ class RetoViewModel {
         }
         
     }
-
+    
     func descansarHoy() {
         if hoy < 66 {
-        estados[hoy] = .descanso
-        hoy += 1
+            estados[hoy] = .descanso
+            hoy += 1
         }
         
-        }
+    }
     
     
     // =====================================================
@@ -1354,21 +1354,13 @@ class RetoViewModel {
     //
     // PASO 1 👇 — escribe aquí la función completa
     func diasCumplidos() -> Int {
-        var caja = 0
-        for i in dias {
-            if i == true {
-                caja += 1 }
-        }
-        return caja
+        return dias.filter { $0 == true }.count
     }
     func diasFallados() -> Int {
-        var caja = 0
-        for i in fallados{
-            if i == true {
-                caja += 1
-            }
+        return fallados.filter { $0 == true}.count
     }
-        return caja
+    func diasDescanso() -> Int {
+        return estados.filter { $0 == .descanso }.count
     }
     // 🎨 Ya movido por mí (es tu colorDelDia del Ej. 13)
     func colorDelDia(_ i: Int) -> Color {
@@ -1383,21 +1375,23 @@ class RetoViewModel {
 
 // 📱 LA PANTALLA — ya está lista, solo dibuja y le avisa al cerebro
 struct Ejercicio15View: View {
-
+    
     @State private var vm = RetoViewModel()
     let columnas = Array(repeating: GridItem(.flexible()), count: 11)
-
+    
     var body: some View {
         VStack(spacing: 24) {
             Text("Día \(vm.hoy) de 66")
                 .font(.largeTitle)
                 .bold()
-
+                .foregroundStyle(vm.hoy == 66 ? .green : .primary)
             Text("🔥 Mejor racha: \(rachaMasLarga(dias: vm.dias))")
-
+            
             // EJ. 16 · PASO 2 👇 — muestra "✅ Cumplidos: X de 66"
             Text("Cumplidos: \(vm.diasCumplidos()) de 66")
-
+                .foregroundStyle( vm.diasCumplidos() > 0 ? .orange : .gray)
+            Text("Descansos: \(vm.diasDescanso())")
+                .foregroundStyle( vm.diasDescanso() > 0 ? .blue : .gray)
             LazyVGrid(columns: columnas, spacing: 10) {
                 ForEach(0..<66, id: \.self) { i in
                     Circle()
@@ -1405,15 +1399,23 @@ struct Ejercicio15View: View {
                         .frame(width: 22, height: 22)
                 }
             }
-
+            
             Button("✅ Marcar hoy") { vm.marcarHoy() }
                 .font(.title2)
                 .buttonStyle(.borderedProminent)
                 .tint(.orange)
-            Button("Falle Hoy") { vm.fallarHoy()}
-            Button("Descanso") { vm.descansarHoy ()
+            HStack {
+                Button("Falle Hoy") { vm.fallarHoy()}
+                    .font(.title2)
+                    .buttonStyle(.borderedProminent)
+                    .tint(.red)
+                Button("Descanso") { vm.descansarHoy ()
+                }
+                .font(.title2)
+                .buttonStyle(.borderedProminent)
+                .tint(.blue)
             }
-            }
+        }
         .padding()
     }
 }
@@ -1439,7 +1441,7 @@ struct Ejercicio15View: View {
 //   Si te trabas más de 2 min, mira el Ej. 11 SOLO esa línea.
 
 struct CalentamientoView: View {
-
+    
     // PASO 1 👇 — las columnas
     let columnas = Array(repeating: GridItem(.flexible()), count: 5)
     @State private var marcados = Array(repeating: false, count: 10)
@@ -1452,26 +1454,26 @@ struct CalentamientoView: View {
         }
         return caja
     }
-
+    
     var body: some View {
         
         // PASO 2 👇 — borra el Text y escribe la grilla
         VStack(spacing: 20) {
             Text("Marcados: \(contarMarcados())")
                 .font(.title)
-        LazyVGrid(columns: columnas) {
-            ForEach(0..<10, id: \.self) { i in
-                Circle()
-                    .fill(marcados[i] ? .orange : .gray)
-                    .frame(width: 30, height: 30)
-                    .onTapGesture {
-                        marcados[i].toggle()
-                    }
+            LazyVGrid(columns: columnas) {
+                ForEach(0..<10, id: \.self) { i in
+                    Circle()
+                        .fill(marcados[i] ? .orange : .gray)
+                        .frame(width: 30, height: 30)
+                        .onTapGesture {
+                            marcados[i].toggle()
+                        }
+                }
+                
             }
-            
         }
-    }
-
+        
     }
 }
 
@@ -1491,43 +1493,43 @@ struct ContentView: View {
         TabView {
             EjemploView()
                 .tabItem { Label("Ejemplo", systemImage: "eye") }
-
+            
             Ejercicio1View()
                 .tabItem { Label("Ejercicio 1", systemImage: "person.crop.square") }
-
+            
             Ejercicio2View()
                 .tabItem { Label("Ejercicio 2", systemImage: "plus.circle") }
-
+            
             Ejercicio3View()
                 .tabItem { Label("Ejercicio 3", systemImage: "list.bullet") }
-
+            
             Ejercicio4View()
                 .tabItem { Label("Ejercicio 4", systemImage: "flame") }
-
+            
             Ejercicio5View()
                 .tabItem { Label("Ejercicio 5", systemImage: "hand.tap") }
-
+            
             Ejercicio6View()
                 .tabItem { Label("Ejercicio 6", systemImage: "plus.square") }
-
+            
             Ejercicio7View()
                 .tabItem { Label("Ejercicio 7", systemImage: "curlybraces") }
-
+            
             Ejercicio8View()
                 .tabItem { Label("Ejercicio 8", systemImage: "globe") }
-
+            
             Ejercicio9View()
                 .tabItem { Label("Ejercicio 9", systemImage: "person.2") }
-
+            
             Ejercicio10View()
                 .tabItem { Label("Ejercicio 10", systemImage: "brain") }
-
+            
             Ejercicio11View()
                 .tabItem { Label("66 días", systemImage: "flame.fill") }
-
+            
             CalentamientoView()
                 .tabItem { Label("Calentamiento", systemImage: "figure.run") }
-
+            
             Ejercicio15View()
                 .tabItem { Label("Mismly MVVM", systemImage: "brain.head.profile") }
         }

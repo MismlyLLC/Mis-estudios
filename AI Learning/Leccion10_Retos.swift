@@ -199,3 +199,27 @@ celebrar()
 // ESCRIBE AQUÍ 👇
 let mostrarRacha = {(dias: Int) in print("Racha de \(dias) días")}
 mostrarRacha(66)
+
+
+// =========================================================
+// RETO 22 — `filter`: el closure que ELIGE
+// =========================================================
+// `filter` recorre la lista y se queda SOLO con los que dan `true`.
+// `$0` = "el de esta vuelta" (como el `numero` de tu for).
+//
+// Ejemplo:
+//   let notas = [3, 7, 5, 9]
+//   let altas = notas.filter { $0 > 5 }    → [7, 9]
+//
+// Es tu molde del acumulador... ¡en UNA línea!
+//
+// TU TURNO: con `rachas`, crea `let largas` con las rachas MAYORES que 10.
+// Imprímela. Debería salir: [12, 30, 66]
+
+let rachas = [4, 12, 7, 30, 66, 2]
+
+// ESCRIBE AQUÍ 👇
+let largas = rachas.filter { $0 > 10}
+print(largas)
+
+
