@@ -309,3 +309,23 @@ marcarDia(80)
 
 
 
+
+// =========================================================
+// RETO 27 — `compactMap`: el filtro que BOTA los nil 🗑️
+// =========================================================
+// Hay listas con huecos vacíos (nil), por ejemplo datos que llegan de internet.
+// `compactMap { $0 }` bota los nil y deja solo los que traen algo.
+//
+// Ejemplo:
+//   let notas: [Int?] = [5, nil, 7]
+//   notas.compactMap { $0 }   → [5, 7]
+//
+// TU TURNO: crea `let limpias` con `rachasConHuecos` sin los nil. Imprímela.
+// Debería salir: [4, 12, 30]
+
+let rachasConHuecos: [Int?] = [4, nil, 12, nil, 30]
+
+print(rachasConHuecos.compactMap{ $0 })
+
+// ESCRIBE AQUÍ 👇
+

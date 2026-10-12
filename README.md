@@ -674,6 +674,9 @@ En el guard va lo que SÍ quieres para dejar pasar.
 a `guard hoy < 66 else { return }`. En entrevista: **early exit**, los casos malos salen arriba y el
 camino feliz queda limpio, sin llaves extra.
 
+**Reto 27 — `compactMap`** ✅ `rachasConHuecos.compactMap { $0 }` → `[4, 12, 30]`: bota los `nil` de una
+lista (`guard let` hace lo mismo con UNA caja). Ronda rápida 4/4: filter / map / guard let / sorted.
+
 **Reto 18 — racha más larga** ✅ 4/4 en `AI Learning/Leccion10_Retos.swift`. Molde de 2 cajas:
 `rachaActual` (sube y se reinicia con cada ❌) y `mejorRacha` (guarda el récord). En el `return`
 va `mejorRacha`: si el último día falla, `rachaActual` queda en 0.
