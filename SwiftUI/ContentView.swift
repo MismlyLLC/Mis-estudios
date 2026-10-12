@@ -1311,29 +1311,26 @@ class RetoViewModel {
     }
     
     func marcarHoy() {
-        if hoy < 66 {
+        guard hoy < 66 else { return }
             dias[hoy] = true
             estados[hoy] = .cumplido
             hoy += 1
-        }
         
     }
     
     // PASO 3 👇
     func fallarHoy() {
-        if hoy < 66 {
+        guard hoy < 66 else { return }
             fallados[hoy] = true
             estados[hoy] = .fallado
             hoy += 1
-        }
         
     }
     
     func descansarHoy() {
-        if hoy < 66 {
+        guard hoy < 66 else { return }
             estados[hoy] = .descanso
             hoy += 1
-        }
         
     }
     

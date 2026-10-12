@@ -226,3 +226,86 @@ print(rachas.map { $0 * 10})
 
 
 
+
+// =========================================================
+// RETO 23 — `sorted`: el closure que ORDENA
+// =========================================================
+// `sorted` devuelve la lista ordenada. Le dices CÓMO con { $0 ... $1 }
+// $0 = uno, $1 = el otro. ¿Va $0 antes que $1?
+//
+// Ejemplo:
+//   [3, 1, 2].sorted { $0 < $1 }   → [1, 2, 3]   (menor primero)
+//
+// TU TURNO: crea `let mejores` con `rachas` de MAYOR a MENOR. Imprímela.
+// Debería salir: [66, 30, 12, 7, 4, 2]
+
+// ESCRIBE AQUÍ 👇
+
+let mejores = rachas.sorted { $0 > $1 }
+
+print(mejores)
+
+// =========================================================
+// RETO 24 — `guard let`: el GUARDIA de la puerta 💂
+// =========================================================
+// Un opcional (`String?`) puede traer algo... o venir vacío (nil).
+// `guard let` revisa: si viene vacío → `return` (fuera). Si trae algo → pasa.
+//
+// Ejemplo:
+//   func saludar(_ nombre: String?) {
+//       guard let nombre = nombre else { return }
+//       print("Hola \(nombre)")
+//   }
+//   saludar("Nicolas")   → Hola Nicolas
+//   saludar(nil)         → (no imprime nada)
+//
+// TU TURNO: completa la línea del guard. Si `racha` viene nil, que salga.
+
+func mostrar(racha: Int?) {
+    // ESCRIBE AQUÍ 👇 (la línea del guard)
+    guard let racha else { return }
+    print("🔥 Racha: \(racha)")
+}
+
+mostrar(racha: 12)
+mostrar(racha: nil)
+
+// =========================================================
+// RETO 25 — ENCADENAR: filter + sorted en una línea 🔗
+// =========================================================
+// Puedes pegar uno detrás del otro: lista.filter { ... }.sorted { ... }
+// Primero filtra, y lo que queda, lo ordena.
+//
+// TU TURNO: crea `let top` con las rachas MAYORES que 5,
+// ordenadas de MAYOR a MENOR. Imprímela.
+// Debería salir: [66, 30, 12, 7]
+
+// ESCRIBE AQUÍ 👇
+
+var top = [Int]()
+top = rachas.filter { racha in racha > 5 }.sorted { $0 < $1}.reversed()
+print(top)
+
+// =========================================================
+// RETO 26 — `guard` desde cero 💂
+// =========================================================
+// TU TURNO: escribe la función `marcarDia(_ dia: Int)` que:
+//   1. Con `guard`, si `dia` es MAYOR que 66 → return (fuera)
+//   2. Si pasa, imprime "✅ Día \(dia) marcado"
+//
+// Prueba:
+//   marcarDia(10)   → ✅ Día 10 marcado
+//   marcarDia(80)   → (nada)
+
+// ESCRIBE AQUÍ 👇
+func marcarDia(_ dia: Int)
+{
+    guard dia <= 66 else { return }
+    print("Día \(dia) marcado")
+}
+
+marcarDia(10)
+marcarDia(80)
+
+
+
