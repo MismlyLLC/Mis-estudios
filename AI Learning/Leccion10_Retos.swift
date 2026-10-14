@@ -329,3 +329,145 @@ print(rachasConHuecos.compactMap{ $0 })
 
 // ESCRIBE AQUÍ 👇
 
+
+
+
+// =========================================================
+// RETO 28 — ARC: Swift cuenta cuántos te usan 🔢
+// =========================================================
+// Una `class` vive mientras ALGUIEN la apunte.
+// Cuando nadie la apunta → Swift la borra sola y corre `deinit`.
+//
+// `deinit { }` = lo último que hace la class antes de morir.
+//
+// TU TURNO (2 líneas, abajo del 👇):
+//   1. Crea `var miReto: Reto? = Reto()`   → debería imprimir "🟢 Reto creado"
+//   2. Ponle `miReto = nil`                → debería imprimir "🗑️ Reto borrado"
+
+class Reto {
+    init()   { print("🟢 Reto creado") }
+    deinit   { print("🗑️ Reto borrado") }
+}
+
+// ESCRIBE AQUÍ 👇
+var miReto: Reto? = Reto()
+miReto = nil
+
+
+
+
+// =========================================================
+// RETO 29 — DOS manos sostienen el mismo globo 🎈🤝
+// =========================================================
+// `var mano2 = mano1` NO hace un globo nuevo: es otra mano en el MISMO globo
+// (class = reference type, como el Google Sheet compartido).
+//
+// TU TURNO (abajo del 👇), una línea a la vez:
+//   1. var mano1: Reto? = Reto()
+//   2. var mano2 = mano1
+//   3. mano1 = nil
+//   4. print("--- solté la mano 1 ---")
+//   5. mano2 = nil
+//
+// ANTES DE CORRER: ¿en qué momento crees que sale "🗑️ Reto borrado"?
+
+// ESCRIBE AQUÍ 👇
+var mano1: Reto? = Reto()
+var mano2 = mano1
+mano1 = nil
+print("--- solté la mano 1 ---")
+mano2 = nil
+
+
+
+
+// =========================================================
+// RETO 30 — El problema: dos globos que se agarran entre sí 🎈↔🎈
+// =========================================================
+// Cada Globo tiene una mano (`amigo`) para agarrar a OTRO globo.
+// Si A agarra a B y B agarra a A... aunque TÚ los sueltes,
+// se siguen sosteniendo entre ellos → NUNCA se borran.
+// Eso se llama RETAIN CYCLE (memory leak) — pregunta TÍPICA de entrevista.
+
+class Globo {
+    let nombre: String
+    weak var amigo: Globo?
+    init(nombre: String) { self.nombre = nombre; print("🟢 \(nombre) creado") }
+    deinit { print("🗑️ \(nombre) borrado") }
+}
+
+var globoA: Globo? = Globo(nombre: "A")
+var globoB: Globo? = Globo(nombre: "B")
+
+// TU TURNO (abajo del 👇), 2 líneas: suelta los dos globos (ponles nil).
+// Luego corremos y miramos: ¿salen los "🗑️ borrado"?
+
+globoA?.amigo = globoB
+globoB?.amigo = globoA
+
+// ESCRIBE AQUÍ 👇
+
+globoA = nil
+globoB = nil
+
+
+
+
+// =========================================================
+// RETO 31 — Practica: Persona 🧍 y Perro 🐶 (mismo problema, otros nombres)
+// =========================================================
+// La persona agarra a su perro. El perro agarra a su dueño.
+// → círculo de manos → retain cycle.
+
+class Persona {
+    let nombre: String
+    var perro: Perro?
+    init(nombre: String) { self.nombre = nombre; print("🟢 \(nombre) creada") }
+    deinit { print("🗑️ \(nombre) borrada") }
+}
+
+class Perro {
+    let nombre: String
+    var dueño: Persona?
+    init(nombre: String) { self.nombre = nombre; print("🟢 \(nombre) creado") }
+    deinit { print("🗑️ \(nombre) borrado") }
+}
+
+var nico: Persona? = Persona(nombre: "Nico")
+var toby: Perro? = Perro(nombre: "Toby")
+
+nico?.perro = toby
+toby?.dueño = nico
+
+nico = nil
+toby = nil
+
+// TU TURNO: corre así primero → NO salen los "borrado" (círculo 🎈↔🎈).
+// Luego arréglalo agregando UNA palabra en UNA línea de arriba.
+
+
+
+
+// =========================================================
+// INIT DESDE CERO — Paso 1: ¿qué es init? 🟢
+// =========================================================
+// init = la FICHA DE INSCRIPCIÓN: lo que necesitas para crear algo.
+//
+// Mira esta class. Para crear un Gato, el init pide UN dato: el nombre.
+
+class Gato {
+    let nombre: String
+
+    init(nombre: String) {
+        self.nombre = nombre
+    }
+}
+
+let gato1 = Gato(nombre: "Michi")
+print(gato1.nombre)
+
+// TU TURNO (1 línea, abajo del 👇):
+//   Crea `let gato2` con el nombre "Pelusa" e imprímelo (copia el molde de gato1).
+
+// ESCRIBE AQUÍ 👇
+
