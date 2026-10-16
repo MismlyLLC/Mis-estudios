@@ -65,15 +65,12 @@ print(miGato.nombre)
 
 // ESCRIBE AQUÍ 👇
 
-func palabraMasLarga(palabra:String -> String[])
+func palabraMasLarga(_ lista: [String]) -> String
 
-let lista: String[]
-
-let palabra = palabraMasLarga
-
+var masLarga = ""
 
 for palabra in lista {
-    if palabra.count > ______
+    if palabra.count > masLarga.count
 return palabraMasLarga(palabra: String)
 }
 

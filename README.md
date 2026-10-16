@@ -7,14 +7,25 @@
 
 ---
 
+## 🧠 Método de estudio (desde el 13 oct 2026)
+
+**Hoja en blanco: yo, con mi cabeza, a crear.**
+
+1. Claude me da un **problema nuevo**, de nivel básico, estilo LeetCode: un enunciado, ejemplos de entrada → salida y, como mucho, un "dato útil".
+2. **No me da código de ejemplo ni un molde para copiar.** Lo resuelvo solo, sin mirar.
+3. Claude corre mi código y me corrige con **preguntas cortas A/B/C**, una a la vez, para encontrar dónde fallo.
+4. **Vamos despacio.** Un concepto a la vez, y no se avanza hasta que lo entiendo. Antes de algo nuevo, se comprueba que domino lo anterior.
+5. Las respuestas son **cortas**: qué pasó en una línea, y en qué archivo y línea arreglarlo.
+6. **45 minutos al día**, sin falta.
+
 ## Cómo retomar el estudio en una nueva sesión
 
 Al abrir un chat nuevo con Claude, pega este prompt:
 
-> "Continuemos con el estudio de Swift. Completé las lecciones 1-8, el repaso de esqueletos, y empecé la Lección 9 (LeetCode Easy): resolví los ejercicios 1, 2 y 3 en AI Learning/Leccion9_LeetCode.swift. El repositorio está en github.com/MismlyLLC/Mis-estudios. Sigo con el ejercicio 4 de la Lección 9. Método de estudio: creamos archivos .swift con comentarios-guía y yo escribo el código siguiendo las instrucciones; luego lo ejecutas y me corriges. Actualiza el progreso según el README."
+> "Estudiemos Swift. Repo: github.com/MismlyLLC/Mis-estudios. Lee el CLAUDE.md y el README. Método: hoja en blanco, un problema nuevo nivel básico, yo lo resuelvo solo con mi cabeza y tú me corriges con preguntas cortas A/B/C."
 
 **Al terminar cada sesión pedir:**
-> "Pasa todo lo que vimos hoy al README para imprimir, actualiza el progreso y guarda la memoria para la próxima sesión."
+> "Pasa todo lo que vimos hoy al README, actualiza el progreso y guarda la memoria para la próxima sesión."
 
 ---
 
@@ -32,6 +43,7 @@ Al abrir un chat nuevo con Claude, pega este prompt:
 | 8 | Protocolos | Completada |
 | — | Repaso de Esqueletos 6-8 | Completado |
 | 9 | LeetCode Easy en Swift | **Completada** (17/17 retos) |
+| 12 | Problemas en hoja en blanco | En curso (2/3) |
 
 ---
 
@@ -714,9 +726,29 @@ Los proyectos siguientes apuntan a una mini-versión del **reto de 66 días de M
 - `AI Learning/Repaso_Retorno.swift` sigue sin usar: son 6 ejercicios ya resueltos,
   en hoja en blanco, para cuando pase un tiempo sin practicar.
 
+
+## Lección 12 — Problemas en hoja en blanco (`AI Learning/Leccion12_Problemas.swift`)
+
+**15 oct 2026 (9:15–10:00, 45 min ✅)**
+
+| # | Problema | Estado |
+|---|----------|--------|
+| 1 | `repetir("ja", 4)` → `"jajajaja"` | ✅ |
+| 2 | `todosPositivos([4, -2, 7])` → `false` | ✅ (con `first(where:)` y con `for`) |
+| 3 | `soloLargas(lista, minimo)` → lista nueva | Pendiente |
+
+### Lo que aprendí
+
+- **Molde completo:** caja (`var x = ""`) → `for` → `return x`. La caja la creo YO con `var`; el nombre de la función no es una caja.
+- **Dar `n` vueltas:** `for _ in 1...numero`. El `_` es para cuando no uso la variable del `for`.
+- **Salida de emergencia:** dentro del `for` solo va el `return` que se puede decidir al ver UNO (`return false`); el otro va después del `for`, cuando ya revisé todos.
+- **Casos borde:** el `0` no es positivo → `<= 0`, no `< 0`.
+- **Firma:** `[Int]`, no `Int[]`; después de `-> Tipo` va `{`. La flecha solo lleva el tipo.
+- **Otras formas:** `lista.first(where: { $0 <= 0 })` (primero que cumple, o `nil`) y `lista.allSatisfy { $0 > 0 }`.
+
 ---
 
-*Archivo de práctica actual: `AI Learning/Leccion9_LeetCode.swift`*  
+*Archivo de práctica actual: `AI Learning/Leccion12_Problemas.swift`*  
 *Archivo de lecciones 1-8: `AI Learning/Playground.swift`*  
 *Branch con notas completas: `main`*  
 *Branch para practicar en blanco: `practica`*
