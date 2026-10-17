@@ -43,7 +43,7 @@ Al abrir un chat nuevo con Claude, pega este prompt:
 | 8 | Protocolos | Completada |
 | — | Repaso de Esqueletos 6-8 | Completado |
 | 9 | LeetCode Easy en Swift | **Completada** (17/17 retos) |
-| 12 | Problemas en hoja en blanco | En curso (2/3) |
+| 12 | Problemas en hoja en blanco | En curso (4/5) |
 
 ---
 
@@ -735,7 +735,9 @@ Los proyectos siguientes apuntan a una mini-versión del **reto de 66 días de M
 |---|----------|--------|
 | 1 | `repetir("ja", 4)` → `"jajajaja"` | ✅ |
 | 2 | `todosPositivos([4, -2, 7])` → `false` | ✅ (con `first(where:)` y con `for`) |
-| 3 | `soloLargas(lista, minimo)` → lista nueva | Pendiente |
+| 3 | `soloLargas(lista, minimo)` → lista nueva | ✅ (17 oct) |
+| 4 | `esPalindromo("oso")` → `true` | ✅ (17 oct, con `reversed()` y versión con `for`) |
+| 5 | `diferencia([3, 9, 1])` → `8` (mayor − menor) | Pendiente |
 
 ### Lo que aprendí
 
@@ -745,6 +747,14 @@ Los proyectos siguientes apuntan a una mini-versión del **reto de 66 días de M
 - **Casos borde:** el `0` no es positivo → `<= 0`, no `< 0`.
 - **Firma:** `[Int]`, no `Int[]`; después de `-> Tipo` va `{`. La flecha solo lleva el tipo.
 - **Otras formas:** `lista.first(where: { $0 <= 0 })` (primero que cumple, o `nil`) y `lista.allSatisfy { $0 > 0 }`.
+
+
+**17 oct 2026 (00:15–01:00)**
+
+- **Lista vacía como caja:** `var palabrasLargas: [String] = []` y `.append(palabra)` para ir agregando al final.
+- **`return` directo:** si la respuesta sale de un solo cálculo, no hace falta caja ni `for`: `return palabra == String(palabra.reversed())`. `==` ya da `true`/`false`.
+- **Invertir con `for`:** `alReves = String(letra) + alReves` (la letra nueva va DELANTE).
+- **Xcode:** autocompletado se apaga en Settings → Text Editing → Editing → Completion.
 
 ---
 

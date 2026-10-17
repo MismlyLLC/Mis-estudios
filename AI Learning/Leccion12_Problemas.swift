@@ -88,9 +88,73 @@ print(todosPositivos([0, 8]))
 
 // ESCRIBE AQUÍ 👇
 
-
+func soloLargas (_ palabras: [String], _ minimo: Int) -> [String] {
+    var palabrasLargas: [String] = []
+    for palabra in palabras {
+        if palabra.count > minimo {
+            palabrasLargas.append(palabra)
+        }
+    }
+    return palabrasLargas
+}
 
 
 print(soloLargas(["sol", "montaña", "mar", "elefante"], 4))
 print(soloLargas(["hola", "chao", "si"], 3))
 print(soloLargas(["a", "b"], 5))
+
+
+
+
+// =========================================================
+// PROBLEMA 4 — ¿Es palíndromo? 🔄
+// =========================================================
+// Enunciado:
+//   Escribe una función `esPalindromo` que reciba una palabra
+//   y devuelva `true` si se lee IGUAL al derecho y al revés, o `false` si no.
+//
+// Ejemplos:
+//   esPalindromo("oso")     → true
+//   esPalindromo("reconocer") → true
+//   esPalindromo("casa")    → false
+//
+// Dato útil: String("hola".reversed()) → "aloh"
+
+// ESCRIBE AQUÍ 👇
+
+func esPalindromo (_ palabra: String) -> (Bool) {
+    
+    return palabra == String(palabra.reversed()) }
+
+
+
+
+print(esPalindromo("oso"))
+print(esPalindromo("reconocer"))
+print(esPalindromo("casa"))
+
+
+
+
+// =========================================================
+// PROBLEMA 5 — Del más chico al más grande 📐
+// =========================================================
+// Enunciado:
+//   Escribe una función `diferencia` que reciba una lista de números
+//   y devuelva la resta entre el número MÁS GRANDE y el MÁS CHICO.
+//
+// Ejemplos:
+//   diferencia([3, 9, 1])      → 8    (9 - 1)
+//   diferencia([5, 5, 5])      → 0    (5 - 5)
+//   diferencia([10, 4, 7, 2])  → 8    (10 - 2)
+//
+// Dato útil: lista[0] → el primer número de la lista
+
+// ESCRIBE AQUÍ 👇
+
+
+
+
+print(diferencia([3, 9, 1]))
+print(diferencia([5, 5, 5]))
+print(diferencia([10, 4, 7, 2]))
