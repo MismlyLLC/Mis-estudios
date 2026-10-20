@@ -737,7 +737,12 @@ Los proyectos siguientes apuntan a una mini-versión del **reto de 66 días de M
 | 2 | `todosPositivos([4, -2, 7])` → `false` | ✅ (con `first(where:)` y con `for`) |
 | 3 | `soloLargas(lista, minimo)` → lista nueva | ✅ (17 oct) |
 | 4 | `esPalindromo("oso")` → `true` | ✅ (17 oct, con `reversed()` y versión con `for`) |
-| 5 | `diferencia([3, 9, 1])` → `8` (mayor − menor) | Pendiente |
+| 5 | `diferencia([3, 9, 1])` → `8` (mayor − menor) | Pendiente (falta `{}` del 2º `if` y el `return`) |
+| 6 | `cuantasVeces([1, 2, 1], buscado: 1)` → `2` | Pendiente (falta `{` en la firma, `return contador` y `}`) |
+| 7 | `cuentaRegresiva(5)` → `[5, 4, 3, 2, 1]` | ✅ (con huecos) |
+| 8 | `contarPalabras("hola mundo")` → `2` | ✅ (20 oct, lógica propia: espacios + 1) |
+| 9 | `doblar([1, 2, 3])` → `[2, 4, 6]` | ✅ (20 oct) |
+| 10 | `contarMayusculas("Hola Mundo")` → `2` | ✅ (20 oct, casi solo) |
 
 ### Lo que aprendí
 
@@ -755,6 +760,16 @@ Los proyectos siguientes apuntan a una mini-versión del **reto de 66 días de M
 - **`return` directo:** si la respuesta sale de un solo cálculo, no hace falta caja ni `for`: `return palabra == String(palabra.reversed())`. `==` ya da `true`/`false`.
 - **Invertir con `for`:** `alReves = String(letra) + alReves` (la letra nueva va DELANTE).
 - **Xcode:** autocompletado se apaga en Settings → Text Editing → Editing → Completion.
+
+**18–20 oct 2026**
+
+- **Caja récord:** `var mayor = numeros[0]` (no `0`: con `menor` fallaría). El `>` solo **pregunta** (true/false); `mayor = numero` es lo que **guarda**.
+- **Tres cosas, tres nombres:** el dato que entra (`buscado`), cada elemento del `for` (`numero`) y la caja que cuenta (`contador`).
+- **Lista nueva:** `var dobles: [Int] = []` → `dobles.append(digito * 2)` → `return dobles`. A una lista no se le asigna un número (`dobles = 4` ❌), se le **agrega**.
+- **`=` no es una ecuación:** `espacios = espacios + 1` = "calcula lo de la derecha y guárdalo a la izquierda".
+- **Dos `+ 1` distintos:** dentro del `if` cuenta cada espacio; en `return espacios + 1` suma la palabra extra.
+- **`map` vs `filter`:** `map` transforma todos (`{ $0 * 2 }`), `filter` se queda con algunos. `for` + `append` es lo que `map` hace por dentro.
+- **Firma:** `-> Int`, nunca `-> (nombre: Int)`. Si los `print` llaman sin etiqueta, va `_` en el parámetro.
 
 ---
 

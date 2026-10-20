@@ -152,9 +152,184 @@ print(esPalindromo("casa"))
 
 // ESCRIBE AQUÍ 👇
 
+func diferencia(numeros: [Int]) -> Int {
+    var mayor = numeros[0]
+    var menor = numeros[0]
 
+    for numero in numeros {
+        if numero > mayor {
+            mayor = numero
+        }
+        if numero < menor {
+            menor = numero
+        }
+    }
+
+    return // ?
+}
 
 
 print(diferencia([3, 9, 1]))
 print(diferencia([5, 5, 5]))
 print(diferencia([10, 4, 7, 2]))
+
+
+// =========================================================
+// PROBLEMA 6 — ¿Cuántas veces aparece? 🔎
+// =========================================================
+// Enunciado:
+//   Escribe una función `cuantasVeces` que reciba una lista de números
+//   y un número buscado, y devuelva cuántas veces aparece ese número
+//   en la lista.
+//
+// Ejemplos:
+//   cuantasVeces([1, 2, 1, 3, 1], buscado: 1)  → 3
+//   cuantasVeces([4, 5, 6], buscado: 9)        → 0
+//   cuantasVeces([7, 7], buscado: 7)           → 2
+
+// ESCRIBE AQUÍ 👇
+
+func cuantasVeces (numeros: [Int], buscado: Int) -> (Int)
+
+  var contador = 0
+
+for numero in numeros {
+    if numero == buscado {
+        contador = contador + 1}
+}
+
+print(cuantasVeces([1, 2, 1, 3, 1], buscado: 1))
+print(cuantasVeces([4, 5, 6], buscado: 9))
+print(cuantasVeces([7, 7], buscado: 7))
+
+
+// =========================================================
+// PROBLEMA 7 — Cuenta regresiva 🚀
+// =========================================================
+// Enunciado:
+//   Escribe una función `cuentaRegresiva` que reciba un número
+//   y devuelva una lista con la cuenta desde ese número hasta 1.
+//
+// Ejemplos:
+//   cuentaRegresiva(5)  → [5, 4, 3, 2, 1]
+//   cuentaRegresiva(3)  → [3, 2, 1]
+//   cuentaRegresiva(1)  → [1]
+//
+// Dato útil: (1...3).reversed() → 3, 2, 1
+
+// ESCRIBE AQUÍ 👇  (rellena los ______)
+
+func cuentaRegresiva(_ numero: Int) -> ([Int]) {
+    var cuenta: [Int] = []
+
+    for n in (1...numero).reversed() {
+        cuenta.append(n)
+    }
+
+    return cuenta
+}
+print(cuentaRegresiva(5))
+print(cuentaRegresiva(3))
+print(cuentaRegresiva(1))
+
+
+// =========================================================
+// PROBLEMA 8 — Contar palabras 📝
+// =========================================================
+// Enunciado:
+//   Escribe una función `contarPalabras` que reciba una frase
+//   y devuelva cuántas palabras tiene.
+//   (Las palabras están separadas por UN espacio.)
+//
+// Ejemplos:
+//   contarPalabras("hola mundo")          → 2
+//   contarPalabras("me gusta Swift")      → 3
+//   contarPalabras("Mismly")              → 1
+//
+// Dato útil: " " → así se escribe un espacio
+
+// ESCRIBE AQUÍ 👇
+
+func contarPalabras (_ frase: String) -> (Int) {
+    
+    var espacios = 0
+    
+    for letra in frase {
+        if letra == " " {
+            espacios = espacios + 1 }
+    }
+    return espacios + 1
+    }
+        
+    
+
+
+print(contarPalabras("hola mundo"))
+print(contarPalabras("me gusta Swift"))
+print(contarPalabras("Mismly"))
+
+
+// =========================================================
+// PROBLEMA 9 — El doble de todo ✖️2
+// =========================================================
+// Enunciado:
+//   Escribe una función `doblar` que reciba una lista de números
+//   y devuelva una lista NUEVA con cada número multiplicado por 2.
+//
+// Ejemplos:
+//   doblar([1, 2, 3])     → [2, 4, 6]
+//   doblar([5, 10])       → [10, 20]
+//   doblar([])            → []
+//
+// Dato útil: 4 * 2 → 8   (el * multiplica)
+
+// ESCRIBE AQUÍ 👇
+
+func doblar (_ numeros: [Int]) -> ([Int]) {
+    var dobles: [Int] = []
+
+for digito in numeros {
+    dobles.append(digito * 2)
+}
+return dobles
+}
+
+print(doblar([1, 2, 3]))
+print(doblar([5, 10]))
+print(doblar([]))
+
+
+// =========================================================
+// PROBLEMA 10 — Cazador de mayúsculas 🔠
+// =========================================================
+// Enunciado:
+//   Escribe una función `contarMayusculas` que reciba una frase
+//   y devuelva cuántas letras MAYÚSCULAS tiene.
+//
+// Ejemplos:
+//   contarMayusculas("Hola Mundo")     → 2
+//   contarMayusculas("SWIFT")          → 5
+//   contarMayusculas("sin mayusculas") → 0
+//
+// Dato útil: letra.isUppercase → true si la letra es mayúscula
+
+// ESCRIBE AQUÍ 👇
+
+func contarMayusculas (_ frase: String) -> (Int) {
+    
+    var mayusculasctd = 0
+    
+    
+    for mayuscula in frase {
+        if mayuscula.isUppercase == true {
+             mayusculasctd = mayusculasctd + 1
+        }
+    }
+    return mayusculasctd
+}
+
+
+
+print(contarMayusculas("Hola Mundo"))
+print(contarMayusculas("SWIFT"))
+print(contarMayusculas("sin mayusculas"))
