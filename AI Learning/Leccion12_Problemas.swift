@@ -333,3 +333,133 @@ func contarMayusculas (_ frase: String) -> (Int) {
 print(contarMayusculas("Hola Mundo"))
 print(contarMayusculas("SWIFT"))
 print(contarMayusculas("sin mayusculas"))
+
+
+// =========================================================
+// PROBLEMA 11 — ¿Es múltiplo? ➗
+// =========================================================
+// Enunciado:
+//   Escribe una función `esMultiplo` que reciba dos números
+//   y devuelva true si el primero es múltiplo del segundo.
+//
+// Ejemplos:
+//   esMultiplo(10, de: 5)  → true    (10 = 5 × 2)
+//   esMultiplo(7, de: 2)   → false
+//   esMultiplo(9, de: 3)   → true
+//
+// Dato útil: 10 % 3 → 1   (el % da el RESTO de la división)
+
+// ESCRIBE AQUÍ 👇
+
+func esMultiplo (_ numero1: Int,de numero2: Int) -> (Bool) {
+    
+    if numero1 % numero2 == 0 {
+        return true
+    }
+    else {
+        return false
+    }
+    
+}
+print(esMultiplo(10, de: 5))
+print(esMultiplo(7, de: 2))
+print(esMultiplo(9, de: 3))
+
+
+// =========================================================
+// PROBLEMA 12 — Suma de múltiplos ➕
+// =========================================================
+// Enunciado:
+//   Escribe una función `sumarMultiplos` que reciba un límite
+//   y un número, y devuelva la SUMA de todos los múltiplos de
+//   ese número desde 1 hasta el límite.
+//
+// Ejemplos:
+//   sumarMultiplos(hasta: 10, de: 3)  → 18   (3 + 6 + 9)
+//   sumarMultiplos(hasta: 10, de: 5)  → 15   (5 + 10)
+//   sumarMultiplos(hasta: 4, de: 7)   → 0    (ninguno)
+
+// ESCRIBE AQUÍ 👇
+
+func sumarMultiplos(hasta limite: Int, de numero: Int) -> Int {
+    var suma = 0                       // 1. caja que acumula
+
+    for i in 1...limite {              // 2. recorre 1, 2, 3 ... limite
+        if i % numero == 0 {           // 3. ¿i es múltiplo? (lo del Problema 11)
+            suma = suma + i            // 4. si sí, lo sumo a la caja
+        }
+    }
+
+    return suma                        // 5. devuelvo la caja
+}
+
+print(sumarMultiplos(hasta: 10, de: 3))
+print(sumarMultiplos(hasta: 10, de: 5))
+print(sumarMultiplos(hasta: 4, de: 7))
+
+
+// =========================================================
+// PROBLEMA 13 — Sin espacios 🧹
+// =========================================================
+// Enunciado:
+//   Escribe una función `quitarEspacios` que reciba una frase
+//   y devuelva la MISMA frase pero sin ningún espacio.
+//
+// Ejemplos:
+//   quitarEspacios("hola mundo")       → "holamundo"
+//   quitarEspacios("me gusta Swift")   → "megustaSwift"
+//   quitarEspacios("Mismly")           → "Mismly"
+//
+// Dato útil: "ho" + "la" → "hola"   (el + pega textos)
+
+// ESCRIBE AQUÍ 👇
+
+
+func quitarEspacios (_ frase: String) -> (String) {
+    
+    var resultado = ""
+    
+    for letra in frase {
+        if letra != " " {
+            resultado = resultado + String(letra)
+        }
+    }
+    return resultado
+}
+
+
+print(quitarEspacios("hola mundo"))
+print(quitarEspacios("me gusta Swift"))
+print(quitarEspacios("Mismly"))
+
+
+// =========================================================
+// PROBLEMA 14 — Solo impares 🎯
+// =========================================================
+// Enunciado:
+//   Escribe una función `soloImpares` que reciba una lista de números
+//   y devuelva una lista NUEVA solo con los números impares.
+//
+// Ejemplos:
+//   soloImpares([1, 2, 3, 4, 5])  → [1, 3, 5]
+//   soloImpares([2, 4, 6])        → []
+//   soloImpares([7, 10, 11])      → [7, 11]
+//
+// Dato útil: 7 % 2 → 1   (un impar siempre deja resto 1 al dividir por 2)
+
+// ESCRIBE AQUÍ 👇
+
+func soloImpares (_ lista: [Int]) -> ([Int]) {
+    
+    var listaNueva: [Int] = []
+    
+    for impar in lista {
+        if impar % 2 == 1 {
+            listaNueva.append(impar)
+        }
+    }
+    return listaNueva
+}
+print(soloImpares([1, 2, 3, 4, 5]))
+print(soloImpares([2, 4, 6]))
+print(soloImpares([7, 10, 11]))

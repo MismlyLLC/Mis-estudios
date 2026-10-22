@@ -771,6 +771,92 @@ Los proyectos siguientes apuntan a una mini-versión del **reto de 66 días de M
 - **`map` vs `filter`:** `map` transforma todos (`{ $0 * 2 }`), `filter` se queda con algunos. `for` + `append` es lo que `map` hace por dentro.
 - **Firma:** `-> Int`, nunca `-> (nombre: Int)`. Si los `print` llaman sin etiqueta, va `_` en el parámetro.
 
+**21–22 oct 2026: cómo lo hice primero → cómo lo corregimos 🧠**
+
+| # | Problema | Estado |
+|---|----------|--------|
+| 11 | `esMultiplo(10, de: 5)` → `true` | ✅ lógica sola, a la primera |
+| 12 | `sumarMultiplos(hasta: 10, de: 3)` → `18` | ✅ me lo resolvió Claude, explicado |
+| 13 | `quitarEspacios("hola mundo")` → `"holamundo"` | ✅ |
+| 14 | `soloImpares([1, 2, 3, 4, 5])` → `[1, 3, 5]` | ✅ |
+
+#### Problema 11: `esMultiplo`
+
+Mi primer intento:
+```swift
+func esMultiplo (numero1: Int, numero2: Int) -> (Bool) {
+    if numero1 % numero2 == 0 {
+        return true
+    }
+    else {
+        return false
+    }
+}
+```
+- ✅ **La lógica la tuve bien a la primera:** `% numero2 == 0` = "no sobra nada → es múltiplo".
+- ❌ **Las etiquetas:** los `print` llamaban `esMultiplo(10, de: 5)`. Primero puse `_` en los dos, y tampoco calzaba con el `de:`.
+- 🔧 **Corrección:** `(_ numero1: Int, de numero2: Int)`. Un parámetro puede tener **dos nombres**: `de` para afuera (se lee como frase: *"¿es múltiplo 10 **de** 5?"*) y `numero2` para adentro.
+- 💡 **Más corto:** `return numero1 % numero2 == 0`, porque el `==` ya da `true`/`false`.
+
+#### Problema 12: `sumarMultiplos`
+
+Mi primer intento (me trabé y pedí la solución):
+```swift
+func sumarMultiplos (_ limite: Int, de numero: Int) -> ()
+for numero...limite {
+}
+```
+- ✅ Usé solo `de numero`, aplicando lo del Problema 11.
+- ❌ `for numero...limite` → al `for` le falta un **nombre para cada vuelta** y el `in`: `for i in 1...limite`. Además, `numero` ya era el parámetro.
+- ❌ `-> ()` no devuelve nada. Tiene que ser `-> Int`, con `{` al final.
+- 🔧 **Solución:** caja `var suma = 0` → `for i in 1...limite` → `if i % numero == 0` (el Problema 11 adentro) → `suma = suma + i` → `return suma`.
+
+#### Problema 13: `quitarEspacios`
+
+Mi primer intento:
+```swift
+var resultado = ""
+for espacio in frase {
+    if vacio == " " {
+
+    }
+}
+```
+- ✅ La firma, la caja `""` (texto vacío) y las llaves me salieron bien.
+- ❌ **Nombres que no calzan** (mi error clásico): el `for` dice `espacio` y el `if` dice `vacio`. Además, cada vuelta trae una **letra**, no un espacio → `for letra in frase`.
+- ❌ **Dejé el `==`**: con `==` solo entra el espacio, al revés de lo que quiero.
+- 🧠 **Mi duda real:** *"¿para qué queremos que entren las letras?"*. Me hizo clic al ver que lo que entra al `if` es lo que se **pega** en `resultado`. El `if` es un **portero** 🚪: deja pasar las letras y bloquea los espacios. `"h"` → `"ho"` → `"hol"` → `"hola"` → (espacio bloqueado) → `"holam"`…
+- ❌ Escribí `=!` en vez de **`!=`** ("distinto de": primero el `!`).
+- ❌ Olvidé el `return resultado` después del `for`.
+- 💡 **Otras formas:** `if letra == " " { continue }` (atrapar el espacio y saltarlo) o, en una línea, `frase.filter { $0 != " " }`.
+
+#### Problema 14: `soloImpares`
+
+Mi primer intento ("me estoy arriesgando"):
+```swift
+func soloImpares (lista: [Int]) -> ([Int])
+    var listaNueva[] = [0]
+for impar in lista {
+    numero = impar
+    if numero % 2 == 1 {
+        return listaNueva.append(impar)
+    }
+}
+```
+- ✅ **La lógica la tuve bien:** `% 2 == 1` = impar, y `listaNueva.append(impar)`. Junté solo el Problema 9 (lista nueva) con el 11 (`%`).
+- ❌ `var listaNueva[] = [0]` → la caja vacía es `var listaNueva: [Int] = []`. `[0]` sería una lista con un cero adentro.
+- ❌ `numero = impar` sobraba: inventé una variable nueva. Se usa directo el nombre del `for`.
+- ❌ **`return` dentro del `for`** (error repetido): saldría con el primer impar. El `return listaNueva` va **después** del `for`.
+- ❌ Faltaba `{` en la firma y el `_` (`_ lista`).
+
+#### 🧠 Cómo piensa mi cabeza (patrones de estos 4 días)
+
+1. **La lógica casi siempre la acierto** (`%`, `!=`, qué comparar). Fallo en lo mecánico.
+2. **Nombres:** invento nombres nuevos o no uso el mismo en el `for` y adentro. **Regla:** el nombre que pongo en el `for` es el ÚNICO que uso adentro.
+3. **`return` dentro del `for`:** **regla:** el `return` de la caja va siempre después de la `}` del `for`.
+4. **Firma:** me falta la `{` o el `_`. **Regla:** miro cómo llaman los `print` antes de escribir la firma.
+5. **Necesito ver el "para qué":** cuando no entiendo el objetivo de una línea, me trabo. Lo que me sirve es ver la caja creciendo vuelta por vuelta.
+
 ---
 
 *Archivo de práctica actual: `AI Learning/Leccion12_Problemas.swift`*  
