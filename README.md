@@ -779,6 +779,8 @@ Los proyectos siguientes apuntan a una mini-versión del **reto de 66 días de M
 | 12 | `sumarMultiplos(hasta: 10, de: 3)` → `18` | ✅ me lo resolvió Claude, explicado |
 | 13 | `quitarEspacios("hola mundo")` → `"holamundo"` | ✅ |
 | 14 | `soloImpares([1, 2, 3, 4, 5])` → `[1, 3, 5]` | ✅ |
+| 15 | `convertir(125)` → `"2 min 5 seg"` | ✅ guiado con A/B/C |
+| 16 | `mayorDeTres(3, 9, 5)` → `9` | ✅ guiado con A/B/C |
 
 #### Problema 11: `esMultiplo`
 
@@ -848,6 +850,33 @@ for impar in lista {
 - ❌ `numero = impar` sobraba: inventé una variable nueva. Se usa directo el nombre del `for`.
 - ❌ **`return` dentro del `for`** (error repetido): saldría con el primer impar. El `return listaNueva` va **después** del `for`.
 - ❌ Faltaba `{` en la firma y el `_` (`_ lista`).
+
+#### Problema 15: `convertir` (24-25 oct)
+
+```swift
+func convertir(_ segundos: Int) -> String {
+    let minutos = segundos / 60     // cuántas veces CABE el 60 → 2
+    let resto = segundos % 60       // lo que SOBRA → 5
+    return "\(minutos) min \(resto) seg"
+}
+```
+- ❌ **Confundí `/` con `%`**: creí que los minutos salían con `%`. `/` = cuántas veces cabe; `%` = lo que sobra.
+- ✅ El `\( )` para meter números dentro del texto lo elegí bien.
+
+#### Problema 16: `mayorDeTres` (25 oct)
+
+```swift
+func mayorDeTres(_ numero1: Int, numero2: Int, numero3: Int) -> Int {
+    var mayor = numero1                         // el 1 parte como campeón 🥊
+    if numero2 > mayor { mayor = numero2 }      // ¿el 2 le gana?
+    if numero3 > mayor { mayor = numero3 }      // ¿el 3 le gana?
+    return mayor
+}
+```
+- ❌ Primero elegí `var mayor = 0` → falla con negativos (`-3, -9, -5` daría `0`). El récord parte con **un número de verdad**.
+- 🧠 Pregunté *"¿por qué numero2 y no numero1?"* → porque el 1 ya está en la caja: es un **torneo**, el 1 parte en el ring y los demás lo desafían.
+- ⚠️ `numero2` y `numero3` no llevan `_`, así que se llama `mayorDeTres(3, numero2: 9, numero3: 5)`. Con `_` en los tres quedaría `mayorDeTres(3, 9, 5)`.
+- Sigo escribiendo `-> (Int)`: los paréntesis sobran, lo normal es `-> Int`.
 
 #### 🧠 Cómo piensa mi cabeza (patrones de estos 4 días)
 

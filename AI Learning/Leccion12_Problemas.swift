@@ -463,3 +463,59 @@ func soloImpares (_ lista: [Int]) -> ([Int]) {
 print(soloImpares([1, 2, 3, 4, 5]))
 print(soloImpares([2, 4, 6]))
 print(soloImpares([7, 10, 11]))
+
+
+// =========================================================
+// PROBLEMA 15 — Segundos a minutos ⏱️
+// =========================================================
+// Enunciado:
+//   Escribe una función `convertir` que reciba una cantidad de
+//   segundos y devuelva un texto con los minutos y segundos.
+//
+
+
+// Ejemplos:
+//   convertir(125)  → "2 min 5 seg"
+//   convertir(60)   → "1 min 0 seg"
+//   convertir(45)   → "0 min 45 seg"
+//
+// Dato útil:  125 / 60 → 2    (división entera: cuántas veces cabe)
+//             125 % 60 → 5    (lo que sobra)
+
+// ESCRIBE AQUÍ 👇
+func convertir (_ segundos: Int) -> (String) {
+    let minutos = segundos / 60
+    let resto = segundos % 60
+    
+    return "\(minutos) min \(resto) seg"
+
+}
+
+
+// =========================================================
+// PROBLEMA 16 — El mayor de tres 🏆
+// =========================================================
+// Enunciado:
+//   Escribe una función `mayorDeTres` que reciba tres números
+//   y devuelva el más grande.
+//
+// Ejemplos:
+//   mayorDeTres(3, 9, 5)   → 9
+//   mayorDeTres(10, 2, 7)  → 10
+//   mayorDeTres(4, 4, 8)   → 8
+
+// ESCRIBE AQUÍ 👇
+
+
+func mayorDeTres (_ numero1: Int, numero2: Int, numero3: Int) -> (Int) {
+    
+    var mayor = numero1
+    
+    if numero2 > mayor { mayor = numero2 }
+    if numero3 > mayor { mayor = numero3 }
+    return mayor
+    
+    
+}
+
+
