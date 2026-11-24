@@ -1476,6 +1476,21 @@ func invertir (_ numeros: [Int]) -> ([Int]) {
 
 // ESCRIBE AQUÍ 👇
 
+// ⭐ IMPORTANTE — para MULTIPLICAR, la caja empieza en 1 (no en 0):
+//   var result = 0  → 0 × 1 × 2 × 3... = 0 siempre ❌
+//   var result = 1  → 1 × 1 × 2 × 3 × 4 = 24 ✅
+//   Sumar/contar → 0  ·  Multiplicar → 1  ·  Récord → numeros[0]
+
+func factorial (_ number: Int) -> (Int) {
+    
+    var result = 1
+    
+    for multiplication in 1...number {
+        
+        result = result * multiplication
+    }
+    return result
+}
 
 
 

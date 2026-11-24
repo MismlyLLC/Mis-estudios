@@ -910,6 +910,8 @@ lista.insert(3, at: 0)   // al INICIO  ⬅️  [3, 1, 2]
 
 - ✅ Resueltos: FizzBuzz, `menorDeLaLista`, `sumarPositivos`, `contarNegativos`, `contarMayores(que:)`, `soloMayores(que:)`, `contiene(al:)`, `posicion(de:)`, `contarLetra`, `reemplazar`, `contarEntre(desde:hasta:)`, `distancia`, `multiplicar(por:)`, `todosMayores(que:)`, `contarPares`, `sumarHasta`, `soloPares`, `contarLargas`, `masLarga`, `sinVocales`, `invertir`.
 - **Récord vs. suma:** récord (mayor/menor) parte en `numeros[0]`; suma o conteo parte en `0`.
+- ⭐ **IMPORTANTE: con qué empieza la caja al MULTIPLICAR (Problema 49, factorial):** empieza en **`1`**, no en `0`. Con `var result = 0`, `0 × lo que sea = 0`, así que siempre da 0 ❌.
+  - Sumar / contar → `0` · Multiplicar → `1` · Récord (mayor/menor) → `numeros[0]`
 - **Sumar vs. contar:** sumar es `+ numero` 🪙, contar es `+ 1` 👆.
 - **Buscar:** `return true` puede ir adentro (lo encontré); el "no está" (`false` / `-1`) va después del `for`.
 - **Gemelos 👯:** el nombre del `for` tiene que ser distinto del parámetro (`for actual in numeros`).
@@ -917,7 +919,7 @@ lista.insert(3, at: 0)   // al INICIO  ⬅️  [3, 1, 2]
 - **`Character` vs `String`:** una letra sola es `Character`; para pegarla a un texto: `String(letra)`.
 - **`&&` = Y, `||` = O, `!` = NO** (`!"aeiou".contains(letra)` → "no es vocal").
 - **`.count` en el `if`:** se puede preguntar por algo del elemento (`palabra.count > 5`).
-- Pendientes: P49 factorial, P50 todosPares, P51 conGuiones.
+- Pendientes: P50 todosPares, P51 conGuiones.
 
 ---
 
