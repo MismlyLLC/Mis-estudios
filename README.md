@@ -886,6 +886,39 @@ func mayorDeTres(_ numero1: Int, numero2: Int, numero3: Int) -> Int {
 4. **Firma:** me falta la `{` o el `_`. **Regla:** miro cómo llaman los `print` antes de escribir la firma.
 5. **Necesito ver el "para qué":** cuando no entiendo el objetivo de una línea, me trabo. Lo que me sirve es ver la caja creciendo vuelta por vuelta.
 
+#### ⭐ IMPORTANTE: `append` vs `insert(at: 0)` (Problema 48, 24 nov)
+
+Los dos **agregan** un elemento a una lista. La diferencia es **dónde** lo ponen:
+
+```swift
+var lista = [1, 2]
+lista.append(3)          // al FINAL   ➡️  [1, 2, 3]
+lista.insert(3, at: 0)   // al INICIO  ⬅️  [3, 1, 2]
+```
+
+- **Por qué `insert(at: 0)` da vuelta una lista:** cada número nuevo se "cuela" adelante de todos. El último en entrar queda primero.
+
+| número | `insert(at: 0)` | lista |
+|---|---|---|
+| 1 | entra | `[1]` |
+| 2 | se cuela adelante del 1 | `[2, 1]` |
+| 3 | se cuela adelante del 2 | `[3, 2, 1]` |
+
+- Con `append` el orden se mantiene igual (cada uno va al final de la fila).
+
+#### Problemas 28–48 (8–24 nov)
+
+- ✅ Resueltos: FizzBuzz, `menorDeLaLista`, `sumarPositivos`, `contarNegativos`, `contarMayores(que:)`, `soloMayores(que:)`, `contiene(al:)`, `posicion(de:)`, `contarLetra`, `reemplazar`, `contarEntre(desde:hasta:)`, `distancia`, `multiplicar(por:)`, `todosMayores(que:)`, `contarPares`, `sumarHasta`, `soloPares`, `contarLargas`, `masLarga`, `sinVocales`, `invertir`.
+- **Récord vs. suma:** récord (mayor/menor) parte en `numeros[0]`; suma o conteo parte en `0`.
+- **Sumar vs. contar:** sumar es `+ numero` 🪙, contar es `+ 1` 👆.
+- **Buscar:** `return true` puede ir adentro (lo encontré); el "no está" (`false` / `-1`) va después del `for`.
+- **Gemelos 👯:** el nombre del `for` tiene que ser distinto del parámetro (`for actual in numeros`).
+- **Etiquetas:** `que limite` → afuera se llama `que:`, adentro se usa `limite`.
+- **`Character` vs `String`:** una letra sola es `Character`; para pegarla a un texto: `String(letra)`.
+- **`&&` = Y, `||` = O, `!` = NO** (`!"aeiou".contains(letra)` → "no es vocal").
+- **`.count` en el `if`:** se puede preguntar por algo del elemento (`palabra.count > 5`).
+- Pendientes: P49 factorial, P50 todosPares, P51 conGuiones.
+
 ---
 
 *Archivo de práctica actual: `AI Learning/Leccion12_Problemas.swift`*  
